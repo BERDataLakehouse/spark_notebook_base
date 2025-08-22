@@ -1,0 +1,26 @@
+[project]
+name = "jupyterhubsingleuser"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3==1.40.3",
+    "cdm-spark-manager-client",
+    "cdm-task-service-client",
+    "cdm-tree-browser",
+    "delta-spark==4.0.0",
+    "itables==2.4.4",
+    "jupyter-ai-cborg",
+    "jupyterlab-favorites",
+    "minio==7.2.16",
+    "pandas==2.3.1",
+    "pip==25.2",
+    "sidecar==0.7.0",
+]
+
+[tool.uv.sources]
+jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git", rev = "v0.1.0" }
+cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.1.0" }
+cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }
+cdm-tree-browser = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.0.2/cdm_tree_browser-0.1.0-py3-none-any.whl" }
