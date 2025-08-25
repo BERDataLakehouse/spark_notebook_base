@@ -5,16 +5,16 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "boto3==1.40.3",
     "cdm-spark-manager-client",
     "cdm-task-service-client",
     "cdm-tree-browser",
-    "delta-spark==4.0.0",
-    "itables==2.4.4",
     "jupyter-ai-cborg",
-    "jupyterlab-favorites",
+    "jupyterlab-favorites==3.2.2",
+    "boto3==1.40.3",
+    "delta-spark==4.0.0",
+    "itables==2.4.5",
     "minio==7.2.16",
-    "pandas==2.3.1",
+    "pandas==2.3.2",
     "pip==25.2",
     "sidecar==0.7.0",
 ]
