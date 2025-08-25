@@ -21,6 +21,6 @@ dependencies = [
 
 [tool.uv.sources]
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git", rev = "v0.1.0" }
-cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.1.0" }
+cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.2.0" }
 cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }
 cdm-tree-browser = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.0.2/cdm_tree_browser-0.1.0-py3-none-any.whl" }
