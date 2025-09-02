@@ -9,6 +9,8 @@ val deltaSparkVersion = "4.0.0"
 val scalaVersion = "2.13"
 val postgresVersion = "42.7.7"
 val sparkXmlVersion = "0.18.0"
+val hiveVersion = "4.0.0"
+
 
 repositories {
     mavenCentral()
@@ -26,6 +28,15 @@ dependencies {
 
     // Spark-Redis connector
     // runtimeOnly("com.redislabs:spark-redis_${scalaVersion}:$sparkRedisVersion") deprecated
+
+    // Hive 4.0.0 client libraries for metastore compatibility
+    runtimeOnly("org.apache.hive:hive-metastore:$hiveVersion")
+    runtimeOnly("org.apache.hive:hive-common:$hiveVersion")
+    runtimeOnly("org.apache.hive:hive-serde:$hiveVersion")
+    runtimeOnly("org.apache.hive:hive-exec:$hiveVersion")
+    runtimeOnly("org.apache.hive:hive-jdbc:$hiveVersion")
+    runtimeOnly("org.apache.hive:hive-service-rpc:$hiveVersion")
+
 
     // Spark-XML connector (no longer needed in 4.0.0)
     runtimeOnly("com.databricks:spark-xml_${scalaVersion}:$sparkXmlVersion")
