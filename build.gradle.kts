@@ -29,14 +29,9 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql:$postgresVersion")
 
     // Essential Hive 4.0.0 client libraries for metastore connectivity
-    runtimeOnly("org.apache.hive:hive-metastore:$hiveVersion")  // Add this - essential!
+    runtimeOnly("org.apache.hive:hive-metastore:$hiveVersion")
     runtimeOnly("org.apache.hive:hive-common:$hiveVersion")
     runtimeOnly("org.apache.hive:hive-serde:$hiveVersion")
-
-    // Optional - only if you need Hive execution engine features
-    runtimeOnly("org.apache.hive:hive-exec:$hiveVersion")
-
-    // Add Spark's Hive integration for Spark 4.0.0
     runtimeOnly("org.apache.spark:spark-hive_${scalaVersion}:4.0.0")
 
     // Spark-XML connector
