@@ -4,7 +4,9 @@ plugins {
 
 // Define all versions as variables for easy updates
 // NOTE: ensure Delta Spark jar version matches python pip delta-spark version specified in the Pipfile
-val hadoopAwsVersion = "3.4.1"
+// NOTE:  hadoopAwsVersion=="3.4.1" doesn't yet work with hive 4.1
+
+val hadoopAwsVersion = "3.3.4"
 val deltaSparkVersion = "4.0.0"
 val scalaVersion = "2.13"
 val postgresVersion = "42.7.7"
