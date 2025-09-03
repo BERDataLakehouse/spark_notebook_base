@@ -22,14 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Remove conflicting Hive 2.3.10 jars
-RUN rm -f /usr/local/spark/jars/hive-beeline-2.3.10.jar \
-    && rm -f /usr/local/spark/jars/hive-cli-2.3.10.jar \
-    && rm -f /usr/local/spark/jars/hive-common-2.3.10.jar \
-    && rm -f /usr/local/spark/jars/hive-exec-2.3.10-core.jar \
-    && rm -f /usr/local/spark/jars/hive-jdbc-2.3.10.jar \
-    && rm -f /usr/local/spark/jars/hive-metastore-2.3.10.jar \
-    && rm -f /usr/local/spark/jars/hive-serde-2.3.10.jar \
-    && rm -f /usr/local/spark/jars/hive-shims-*.jar
+RUN rm -f /usr/local/spark/jars/hive-*-2.3.10.jar /usr/local/spark/jars/hive-shims-*.jar /usr/local/spark/jars/spark-hive*.jar
 
 # Update python and install dependencies
 WORKDIR /deps

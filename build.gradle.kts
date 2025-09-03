@@ -28,19 +28,13 @@ dependencies {
     // PostgreSQL JDBC Driver
     runtimeOnly("org.postgresql:postgresql:$postgresVersion")
 
-    // Spark-Redis connector
-    // runtimeOnly("com.redislabs:spark-redis_${scalaVersion}:$sparkRedisVersion") deprecated
-
-    // Hive 4.0.0 client libraries for metastore compatibility
+    // Essential Hive 4.0.0 client libraries for metastore connectivity
     runtimeOnly("org.apache.hive:hive-metastore:$hiveVersion")
     runtimeOnly("org.apache.hive:hive-common:$hiveVersion")
     runtimeOnly("org.apache.hive:hive-serde:$hiveVersion")
-    runtimeOnly("org.apache.hive:hive-exec:$hiveVersion")
-    runtimeOnly("org.apache.hive:hive-jdbc:$hiveVersion")
-    runtimeOnly("org.apache.hive:hive-service-rpc:$hiveVersion")
+    runtimeOnly("org.apache.spark:spark-hive_${scalaVersion}:4.0.0")
 
-
-    // Spark-XML connector (no longer needed in 4.0.0)
+    // Spark-XML connector
     runtimeOnly("com.databricks:spark-xml_${scalaVersion}:$sparkXmlVersion")
 }
 
