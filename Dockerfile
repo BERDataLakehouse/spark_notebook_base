@@ -3,6 +3,7 @@ FROM gradle:9.0.0-jdk24-ubi-minimal AS builder
 WORKDIR /build
 COPY build.gradle.kts .
 RUN gradle copyLibs --no-daemon
+RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependencies.txt
 
 FROM quay.io/jupyter/pyspark-notebook:spark-4.0.0
 USER root
