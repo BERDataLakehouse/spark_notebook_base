@@ -45,6 +45,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Free Disk Space (Ubuntu)
+        if: ${{ (github.event_name == 'release' && github.event.action == 'published') || github.ref_type == 'tag' }}
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: false
