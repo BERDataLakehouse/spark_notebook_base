@@ -7,7 +7,7 @@ RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependenc
 
 FROM quay.io/jupyter/pyspark-notebook:spark-4.0.0
 USER root
-COPY --from=builder /build/libs/ /usr/local/spark/jars/
+
 
 
 ENV MC_VER=2025-07-21T05-28-08Z
@@ -22,8 +22,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Remove conflicting Hive 2.3.10 jars
+# Remove conflicting Hive 2.3.10 jars and add our own
 RUN rm -f /usr/local/spark/jars/hive-*-2.3.10.jar /usr/local/spark/jars/hive-shims-*.jar /usr/local/spark/jars/spark-hive*.jar
+COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
 # Update python and install dependencies
 WORKDIR /deps
