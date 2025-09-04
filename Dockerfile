@@ -5,7 +5,9 @@ COPY build.gradle.kts .
 RUN gradle copyLibs --no-daemon
 RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependencies.txt
 
-FROM quay.io/jupyter/pyspark-notebook:spark-4.0.0
+# This is a 4.0 tag from August 2025
+FROM quay.io/jupyter/pyspark-notebook@sha256:938fdd57901e764b4e6e0adbe7438725e703a782608dc79bd2a7c722a4f8a0bf
+
 USER root
 ENV MC_VER=2025-07-21T05-28-08Z
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -17,13 +19,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && chmod +x /usr/local/bin/mc \
     && apt-get purge -y --auto-remove wget \
     && rm -rf /var/lib/apt/lists/*
-# Remove conflicting Hive 2.3.10 jars and add our own
-RUN rm -f /usr/local/spark/jars/hive-*-2.3.10.jar /usr/local/spark/jars/hive-shims-*.jar /usr/local/spark/jars/spark-hive*.jar
+
 COPY --from=builder /build/libs/ /usr/local/spark/jars/
-# Update python and install dependencies
+
+# See https://github.com/astral-sh/uv/issues/11315
 WORKDIR /deps
 COPY pyproject.toml uv.lock .python-version /deps/
-# See https://github.com/astral-sh/uv/issues/11315
 RUN pip install uv
 ENV VIRTUAL_ENV=/opt/conda
 RUN uv sync --locked --inexact --no-dev
