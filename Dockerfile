@@ -28,5 +28,5 @@ COPY pyproject.toml uv.lock .python-version /deps/
 RUN /opt/conda/bin/pip install uv==0.8.2
 ENV UV_PYTHON=/opt/conda/bin/python
 RUN uv export --locked --no-dev --format requirements-txt > requirements.txt
-RUN uv pip install -r requirements.txt --system
+RUN /opt/conda/bin/pip install -r requirements.txt --system
 RUN rm -rf /home/jovyan/
