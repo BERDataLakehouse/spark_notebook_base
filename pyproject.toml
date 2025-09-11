@@ -3,7 +3,7 @@ name = "jupyterhubsingleuser"
 version = "0.1.0"
 description = "BERDL Notebook Environment"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
     "cdm-spark-manager-client",
     "cdm-task-service-client",
