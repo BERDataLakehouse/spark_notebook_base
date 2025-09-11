@@ -1110,7 +1110,7 @@ requires-dist = [
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.0" },
     { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.0.2/cdm_tree_browser-0.1.0-py3-none-any.whl" },
     { name = "delta-spark", specifier = "==4.0.0" },
-    { name = "httpx" },
+    { name = "httpx", specifier = "==0.28.1" },
     { name = "itables", specifier = "==2.4.5" },
     { name = "jupyter-ai-cborg", git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git?rev=v0.1.0" },
     { name = "jupyterlab-favorites", specifier = "==3.2.2" },
