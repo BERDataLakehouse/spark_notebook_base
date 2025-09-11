@@ -265,6 +265,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cdm-minio-service-client"
+version = "0.0.1"
+source = { git = "https://github.com/kbase/cdm-minio-service-client.git?rev=0.0.1#1db9d2805b0a67cef603c9ba3a6284714dde6ee5" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+
+[[package]]
 name = "cdm-spark-manager-client"
 version = "0.0.1"
 source = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1#bcd160c060cf7466a6ab2aca01ee0c0c4d85f3fb" }
@@ -1078,10 +1087,12 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "boto3" },
+    { name = "cdm-minio-service-client" },
     { name = "cdm-spark-manager-client" },
     { name = "cdm-task-service-client" },
     { name = "cdm-tree-browser" },
     { name = "delta-spark" },
+    { name = "httpx" },
     { name = "itables" },
     { name = "jupyter-ai-cborg" },
     { name = "jupyterlab-favorites" },
@@ -1094,10 +1105,12 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "boto3", specifier = "==1.40.3" },
+    { name = "cdm-minio-service-client", git = "https://github.com/kbase/cdm-minio-service-client.git?rev=0.0.1" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.0" },
     { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.0.2/cdm_tree_browser-0.1.0-py3-none-any.whl" },
     { name = "delta-spark", specifier = "==4.0.0" },
+    { name = "httpx" },
     { name = "itables", specifier = "==2.4.5" },
     { name = "jupyter-ai-cborg", git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git?rev=v0.1.0" },
     { name = "jupyterlab-favorites", specifier = "==3.2.2" },
