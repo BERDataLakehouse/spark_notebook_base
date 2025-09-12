@@ -31,7 +31,6 @@ ENV SPARK_CONF_DIR=${SPARK_HOME}/conf
 ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:${PYTHONPATH}
 ENV PYSPARK_PYTHONPATH_SET=1
 
-RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17
-RUN eval "$(conda shell.bash hook)" && uv sync --locked --inexact --no-dev
+RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17 && uv sync --locked --inexact --no-dev
 
 RUN rm -rf /home/jovyan/
