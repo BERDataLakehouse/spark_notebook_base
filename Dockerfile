@@ -28,15 +28,6 @@ COPY requirements.txt /deps/
 ENV SPARK_HOME=/usr/local/spark
 ENV SPARK_CONF_DIR=${SPARK_HOME}/conf
 ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:/opt/conda/:${PYTHONPATH}
-
-
 RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17
-
 RUN eval "$(conda shell.bash hook)" && uv pip install --system -r requirements.txt
-# This command will find the location of the pyspark package
-RUN eval "$(conda shell.bash hook)" && pip show pyspark | grep Location
-
-# This command will find the location of the minio package
-RUN eval "$(conda shell.bash hook)" && pip show minio | grep Location
-
 RUN rm -rf /home/jovyan/
