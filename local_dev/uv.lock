@@ -1018,6 +1018,7 @@ dependencies = [
     { name = "pandas" },
     { name = "pip" },
     { name = "py4j" },
+    { name = "pydantic-settings" },
     { name = "pyspark" },
     { name = "sidecar" },
 ]
@@ -1039,6 +1040,7 @@ requires-dist = [
     { name = "pandas", specifier = "==2.3.2" },
     { name = "pip", specifier = "==25.2" },
     { name = "py4j", specifier = "==0.10.9.9" },
+    { name = "pydantic-settings", specifier = "==2.10.1" },
     { name = "pyspark", specifier = "==4.0.0" },
     { name = "sidecar", specifier = "==0.7.0" },
 ]

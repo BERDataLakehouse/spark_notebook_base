@@ -22,15 +22,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
-
+ENV HOME=
 WORKDIR /deps
-COPY pyproject.toml uv.lock .python-version /deps/
-
+COPY requirements.txt /deps/
 ENV SPARK_HOME=/usr/local/spark
 ENV SPARK_CONF_DIR=${SPARK_HOME}/conf
-ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:${PYTHONPATH}
-ENV PYSPARK_PYTHONPATH_SET=1
-
-RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17 && uv sync --locked --inexact --no-dev
-
+ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:/opt/conda/:${PYTHONPATH}
+RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17
+RUN eval "$(conda shell.bash hook)" && uv pip install --system -r requirements.txt
 RUN rm -rf /home/jovyan/
