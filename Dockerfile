@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
-RUN unset HOME
+ENV HOME=
 WORKDIR /deps
 COPY requirements.txt /deps/
 ENV SPARK_HOME=/usr/local/spark
