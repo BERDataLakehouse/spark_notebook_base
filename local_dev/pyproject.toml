@@ -23,6 +23,7 @@ dependencies = [
     "pyspark==4.0.0",
     "py4j==0.10.9.9",
     "delta-spark==4.0.0",
+    "pydantic-settings==2.10.1",
 ]
 
 [tool.uv.sources]
