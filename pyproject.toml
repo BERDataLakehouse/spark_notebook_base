@@ -12,16 +12,17 @@ dependencies = [
     "jupyter-ai-cborg",
     "jupyterlab-favorites==3.2.2",
     "boto3==1.40.3",
-    "delta-spark==4.0.0",
     "itables==2.4.5",
     "minio==7.2.16",
     "pandas==2.3.2",
     "pip==25.2",
     "sidecar==0.7.0",
     "httpx==0.28.1",
+    "attrs==25.3.0",
+    # Note these dependencies are already in the container, but we should explicitly call them out here
     "pyspark==4.0.0",
-    "attrs==25.3.0"
-
+    "py4j==0.10.9.9",
+    "delta-spark==4.0.0",
 ]
 
 [tool.uv.sources]

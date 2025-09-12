@@ -22,11 +22,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
-# See https://github.com/astral-sh/uv/issues/11315
+
 WORKDIR /deps
 COPY pyproject.toml uv.lock .python-version /deps/
-RUN /opt/conda/bin/pip install uv==0.8.2
-ENV UV_PYTHON=/opt/conda/bin/python
-RUN uv export --no-hashes --locked --no-dev --format requirements-txt > requirements.txt
-RUN /opt/conda/bin/pip install -r requirements.txt
+
+ENV SPARK_HOME=/usr/local/spark
+ENV SPARK_CONF_DIR=${SPARK_HOME}/conf
+ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:${PYTHONPATH}
+ENV PYSPARK_PYTHONPATH_SET=1
+
+RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17 && uv sync --locked --inexact --no-dev
+
 RUN rm -rf /home/jovyan/
