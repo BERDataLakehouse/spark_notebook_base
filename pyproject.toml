@@ -19,7 +19,8 @@ dependencies = [
     "pip==25.2",
     "sidecar==0.7.0",
     "httpx==0.28.1",
-    "pyspark==4.0.0"
+    "pyspark==4.0.0",
+    "attrs==25.3.0"
 
 ]
 
