@@ -24,9 +24,6 @@ COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
 # See https://github.com/astral-sh/uv/issues/11315
 WORKDIR /deps
-COPY pyproject.toml uv.lock .python-version /deps/
-RUN /opt/conda/bin/pip install uv==0.8.2
-ENV UV_PYTHON=/opt/conda/bin/python
-RUN uv export --no-hashes --locked --no-dev --format requirements-txt > requirements.txt
-RUN /opt/conda/bin/pip install -r requirements.txt
-RUN rm -rf /home/jovyan/
+COPY requirements.txt /deps/
+RUN source /usr/local/bin/before-notebook.d/10activate-conda-env.sh && source /usr/local/bin/before-notebook.d/10spark-config.sh
+RUN pip install -r requirements.txt
