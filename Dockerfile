@@ -25,6 +25,7 @@ COPY --from=builder /build/libs/ /usr/local/spark/jars/
 # See https://github.com/astral-sh/uv/issues/11315
 WORKDIR /deps
 COPY requirements.txt /deps/
-RUN source /usr/local/bin/before-notebook.d/10activate-conda-env.sh && source /usr/local/bin/before-notebook.d/10spark-config.sh
-RUN pip install -r requirements.txt
+RUN source /usr/local/bin/before-notebook.d/10activate-conda-env.sh && \
+    source /usr/local/bin/before-notebook.d/10spark-config.sh && \
+    pip install -r requirements.txt
 RUN rm -rf /home/jovyan/
