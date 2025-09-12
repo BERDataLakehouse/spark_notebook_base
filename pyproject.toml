@@ -21,7 +21,6 @@ dependencies = [
     "httpx==0.28.1",
     "pyspark==4.0.0",
     "attrs==25.3.0"
-
 ]
 
 [tool.uv.sources]
