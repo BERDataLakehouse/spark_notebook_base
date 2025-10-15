@@ -2,7 +2,6 @@ cdm-spark-manager-client @ git+https://github.com/kbase/cdm-kube-spark-manager-c
 cdm-task-service-client @ git+https://github.com/kbase/cdm-task-service-client.git@0.2.0
 minio-manager-service-client @ git+https://github.com/BERDataLakehouse/minio_manager_service_client.git@v0.0.4
 cdm-tree-browser @ https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.0.2/cdm_tree_browser-0.1.0-py3-none-any.whl
-jupyter-ai-cborg @ git+https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git@v0.1.0
 jupyterlab-favorites==3.2.2
 boto3==1.40.3
 delta-spark==4.0.0
