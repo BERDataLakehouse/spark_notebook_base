@@ -17,3 +17,11 @@ attrs==25.3.0
 py4j==0.10.9.9
 pydantic-settings==2.10.1
 hmsclient==0.1.1
+
+# Jupyter AI dependencies
+jupyter-ai==2.31.6
+langchain-openai==0.3.35
+langchain-anthropic==0.3.22
+langchain-ollama==0.3.10
+huggingface_hub==0.35.3
+jupyter-ai-cborg @ git+https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git@v0.1.0
