@@ -24,3 +24,6 @@ langchain-anthropic==0.3.22
 langchain-ollama==0.3.10
 huggingface_hub==0.35.3
 jupyter-ai-cborg @ git+https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git@v0.1.0
+
+# JupyterLab Brand Extension
+cdm-jupyterlab-brand-extension @ https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl
