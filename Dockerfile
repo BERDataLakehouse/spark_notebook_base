@@ -5,11 +5,11 @@ COPY build.gradle.kts .
 RUN gradle copyLibs --no-daemon
 RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependencies.txt
 
-# This is a 4.0 tag from August 2025
-FROM quay.io/jupyter/pyspark-notebook@sha256:938fdd57901e764b4e6e0adbe7438725e703a782608dc79bd2a7c722a4f8a0bf
+# This is a spark-4.0.1 tag from November 2025
+FROM quay.io/jupyter/pyspark-notebook@sha256:6287c0ba787930d8dec08f8c5c81866b1e86be14adbfb3efe2b18d4e5db877ff
 
 USER root
-ENV MC_VER=2025-07-21T05-28-08Z
+ENV MC_VER=2016-02-19T04-11-55Z
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gettext \
         vim \
