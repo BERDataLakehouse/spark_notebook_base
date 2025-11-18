@@ -41,6 +41,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Free Disk Space (Ubuntu)
+        if: ${{ github.event_name != 'pull_request' }}
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: false
