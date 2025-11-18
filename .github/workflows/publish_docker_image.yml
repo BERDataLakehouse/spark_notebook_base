@@ -41,10 +41,15 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Free Disk Space (Ubuntu)
-        if: ${{ (github.event_name == 'release' && github.event.action == 'published') || github.ref_type == 'tag' }}
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
 
       - name: Build and push Docker image
         id: build-and-push
