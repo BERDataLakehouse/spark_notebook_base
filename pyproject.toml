@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "cdm-jupyterlab-brand-extension",
-    "cdm-minio-service-client",
     "cdm-spark-manager-client",
     "cdm-task-service-client",
     "cdm-tree-browser",
@@ -30,21 +29,25 @@ dependencies = [
     "pyspark[connect]==4.0.1",
     # Jupyter AI dependencies
     "jupyter-ai==2.31.6",
-    "langchain-openai==0.3.35",     # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-anthropic==0.3.22",  # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-ollama==0.3.10",     # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-mcp-tools==0.2.13",  # Automatic MCP tool discovery for FastApiMCP servers
-    "websockets==15.0.1",           # Required by langchain-mcp-tools
+    "langchain-openai==0.3.35", # Keep at 0.3.x for jupyter-ai compatibility
+    "langchain-anthropic==0.3.22", # Keep at 0.3.x for jupyter-ai compatibility
+    "langchain-ollama==0.3.10", # Keep at 0.3.x for jupyter-ai compatibility
+    "langchain-mcp-tools==0.2.13", # Automatic MCP tool discovery for FastApiMCP servers
+    "websockets==15.0.1", # Required by langchain-mcp-tools
     "huggingface-hub==1.1.2",
 ]
 
 [tool.uv.sources]
 
 cdm-jupyterlab-brand-extension = { url = "https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl" }
-cdm-minio-service-client = { git = "https://github.com/kbase/cdm-minio-service-client.git", rev = "0.0.1" }
 cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }
 cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.2.1" }
 cdm-tree-browser = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.0.2/cdm_tree_browser-0.1.0-py3-none-any.whl" }
 datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git" }
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
 minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git" }
+
+[dependency-groups]
+dev = [
+    "wheel>=0.45.1",
+]
