@@ -33,7 +33,7 @@ The Python packages installed on the spark notebook base docker images are bundl
 Downstream python packages installed on the `spark_notebook_base` image or its derivatives can add these dependencies using the command:
 
 ```sh
-$ uv add git+https://github.com/BERDataLakehouse/spark_notebook_base.git#subdirectory=local_dev
+$ uv add git+https://github.com/BERDataLakehouse/spark_notebook_base.git
 ```
 
 This will import the package `berdl-notebook-python-base` into the project dependencies; `berdl-notebook-python-base` provides no code of its own, it just installs the dependencies listed in the `pyproject.toml`.
@@ -50,7 +50,7 @@ See the [uv docs](https://docs.astral.sh/uv/reference/cli/) for more details.
 ### Install these dependencies in another project
 
 ```sh
-$ uv add git+https://github.com/BERDataLakehouse/spark_notebook_base.git#subdirectory=local_dev
+$ uv add git+https://github.com/BERDataLakehouse/spark_notebook_base.git
 ```
 
 ### Install development dependencies
