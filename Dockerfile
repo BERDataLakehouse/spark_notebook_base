@@ -1,4 +1,4 @@
-FROM gradle:9.0.0-jdk24-ubi-minimal AS builder
+FROM gradle:9.1.0-jdk24-ubi-minimal AS builder
 # Setup Java dependencies. Cut a release to build this image on GHA
 WORKDIR /build
 COPY build.gradle.kts .
