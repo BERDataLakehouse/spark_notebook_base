@@ -18,7 +18,7 @@ dependencies = [
     "httpx==0.28.1",
     "itables==2.5.2",
     "jupyterlab-favorites==3.2.2",
-    "minio==7.2.18",
+    "minio==7.2.20",
     "pandas==2.3.3",
     "pip==25.3",
     "sidecar==0.8.0",
