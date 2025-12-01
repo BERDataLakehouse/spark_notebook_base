@@ -13,7 +13,7 @@ dependencies = [
     "jupyter-ai-cborg",
     "minio-manager-service-client",
     "attrs==25.4.0",
-    "boto3==1.41.0",
+    "boto3==1.42.0",
     "hmsclient>=0.1.1",
     "httpx==0.28.1",
     "itables==2.5.2",
