@@ -17,7 +17,7 @@ dependencies = [
     "hmsclient>=0.1.1",
     "httpx==0.28.1",
     "itables==2.5.2",
-    "jupyterlab-favorites==3.2.2",
+    "jupyterlab-favorites==3.3.0",
     "minio==7.2.20",
     "pandas==2.3.3",
     "pip==25.3",
