@@ -28,7 +28,7 @@ dependencies = [
     "pydantic-settings==2.12.0",
     "pyspark[connect]==4.0.1",
     # Jupyter AI dependencies
-    "jupyter-ai==2.31.6",
+    "jupyter-ai==2.31.7",
     "langchain-openai==0.3.35", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-anthropic==0.3.22", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-ollama==0.3.10", # Keep at 0.3.x for jupyter-ai compatibility

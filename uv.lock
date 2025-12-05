@@ -270,7 +270,7 @@ requires-dist = [
     { name = "httpx", specifier = "==0.28.1" },
     { name = "huggingface-hub", specifier = "==1.1.7" },
     { name = "itables", specifier = "==2.5.2" },
-    { name = "jupyter-ai", specifier = "==2.31.6" },
+    { name = "jupyter-ai", specifier = "==2.31.7" },
     { name = "jupyter-ai-cborg", git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" },
     { name = "jupyterlab-favorites", specifier = "==3.2.2" },
     { name = "langchain-anthropic", specifier = "==0.3.22" },
@@ -1319,7 +1319,7 @@ wheels = [
 
 [[package]]
 name = "jupyter-ai"
-version = "2.31.6"
+version = "2.31.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dask", extra = ["distributed"] },
@@ -1331,9 +1331,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "traitlets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/74/30/334b7d2988b3652f714fbc9351cd1d4c2ff72f5343a221b41e54bb1049b0/jupyter_ai-2.31.6.tar.gz", hash = "sha256:65bc8f2563997387e4ef133119614b49ba0770059a43c1a4c0601dcb975a5a6a", size = 387150, upload-time = "2025-07-25T13:24:05.066Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9c/7c/30117568ac7412f6d5b97fb9d0fbab9b7b0b4101030f8e26b2b36ea32afb/jupyter_ai-2.31.7.tar.gz", hash = "sha256:88289ee0fabdfa9e1883a0089c9afa36a0cc916c81e81b6f4e2655f000437159", size = 387345, upload-time = "2025-11-25T22:42:15.461Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7a/39/9d7dc41ad616b0fe29cf3185c6817ed1d32b2e71519d4de0c0127aafe85b/jupyter_ai-2.31.6-py3-none-any.whl", hash = "sha256:3ddc9e6f581e4913ee6a6812cf326c2294591ba14c99071a695b0ede6f4e7692", size = 314013, upload-time = "2025-07-25T13:24:03.31Z" },
+    { url = "https://files.pythonhosted.org/packages/57/31/3d0addda5b60327b50b9f7926aca9711f9de48444407e7fe1e77aa579fc4/jupyter_ai-2.31.7-py3-none-any.whl", hash = "sha256:e73eb87d6777e4f0c1bf9d42e90da39d5e2463ba0051031f02f9863e535cc955", size = 314200, upload-time = "2025-11-25T22:42:13.239Z" },
 ]
 
 [[package]]
@@ -1346,7 +1346,7 @@ dependencies = [
 
 [[package]]
 name = "jupyter-ai-magics"
-version = "2.31.6"
+version = "2.31.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -1357,9 +1357,9 @@ dependencies = [
     { name = "langchain-community" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fa/e1/12f70a1f2771e6d0fed5408add2fdbd6d75c4a53faf0be4d3a1c954fc90c/jupyter_ai_magics-2.31.6.tar.gz", hash = "sha256:cc2397f5e81ba37eb3e6a8968edd6af3d5efd93baaf3369e5334717986bf36ca", size = 32079, upload-time = "2025-07-25T13:24:10.979Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f0/ec/8dd617ccc1e523f7b2023140934d1118e545eb70eec8a169b4484264ec5a/jupyter_ai_magics-2.31.7.tar.gz", hash = "sha256:c6d77a29b19e520ff1113fb92c4830df4154e322c917a4c356739440450721e4", size = 32080, upload-time = "2025-11-25T22:42:21.23Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/77/b9/15831d80c3cdfab62e0feb5f5f85c2694be3ea65a77cfca0712765b43af9/jupyter_ai_magics-2.31.6-py3-none-any.whl", hash = "sha256:57409acfd43185da08171dc4528bd1ce308f21e026bd6f451b6aac999913fcb7", size = 43460, upload-time = "2025-07-25T13:24:08.939Z" },
+    { url = "https://files.pythonhosted.org/packages/36/ea/40bf58459fe7edc45b1da1e012b7337141c516825f02e1c591f770ce68c1/jupyter_ai_magics-2.31.7-py3-none-any.whl", hash = "sha256:42b0b26d1864bd98cf6c6a303733d42186801eb1477a3b85acb396e2a94b5ab1", size = 43463, upload-time = "2025-11-25T22:42:19.584Z" },
 ]
 
 [[package]]
