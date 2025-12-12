@@ -217,11 +217,20 @@ wheels = [
 ]
 
 [[package]]
+name = "berdl-access-request"
+version = "0.1.0"
+source = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.2#676ffb9073c0395757d52d6660dc5070d774626f" }
+dependencies = [
+    { name = "jupyter-server" },
+]
+
+[[package]]
 name = "berdl-notebook-python-base"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "attrs" },
+    { name = "berdl-access-request" },
     { name = "boto3" },
     { name = "cdm-jupyterlab-brand-extension" },
     { name = "cdm-spark-manager-client" },
@@ -259,6 +268,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
+    { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.2" },
     { name = "boto3", specifier = "==1.42.0" },
     { name = "cdm-jupyterlab-brand-extension", url = "https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },

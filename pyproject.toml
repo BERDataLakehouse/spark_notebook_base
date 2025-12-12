@@ -35,6 +35,7 @@ dependencies = [
     "langchain-mcp-tools==0.2.13", # Automatic MCP tool discovery for FastApiMCP servers
     "websockets==15.0.1", # Required by langchain-mcp-tools
     "huggingface-hub==1.1.7",
+    "berdl-access-request",
 ]
 
 [tool.uv.sources]
@@ -46,6 +47,7 @@ cdm-tree-browser = { url = "https://github.com/kbaseincubator/cdm-tree-browser/r
 datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.4" }
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
 minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.7" }
+berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git", rev = "v0.0.2" }
 
 [dependency-groups]
 dev = [
