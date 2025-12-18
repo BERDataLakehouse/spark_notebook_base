@@ -273,7 +273,7 @@ requires-dist = [
     { name = "cdm-jupyterlab-brand-extension", url = "https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.1" },
-    { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.1.0/cdm_tree_browser-0.1.0-py3-none-any.whl" },
+    { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" },
     { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.4" },
     { name = "delta-spark", specifier = "==4.0.0" },
     { name = "hmsclient", specifier = ">=0.1.1" },
@@ -380,9 +380,9 @@ dependencies = [
 [[package]]
 name = "cdm-tree-browser"
 version = "0.1.0"
-source = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.1.0/cdm_tree_browser-0.1.0-py3-none-any.whl" }
+source = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" }
 wheels = [
-    { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.1.0/cdm_tree_browser-0.1.0-py3-none-any.whl", hash = "sha256:bf28cfa13e8c151d68261a91931888316fad57f4464c04a33a906bfa840764d9" },
+    { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl", hash = "sha256:7b88d150161c36a493e96ab0f8707dbe1c6f874884ee906e51aff983b3d0add3" },
 ]
 
 [[package]]
