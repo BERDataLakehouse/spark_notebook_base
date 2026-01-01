@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -282,7 +282,7 @@ requires-dist = [
     { name = "itables", specifier = "==2.5.2" },
     { name = "jupyter-ai", specifier = "==2.31.7" },
     { name = "jupyter-ai-cborg", git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" },
-    { name = "jupyterlab-favorites", specifier = "==3.3.0" },
+    { name = "jupyterlab-favorites", specifier = "==3.3.1" },
     { name = "langchain-anthropic", specifier = "==0.3.22" },
     { name = "langchain-mcp-tools", specifier = "==0.2.13" },
     { name = "langchain-ollama", specifier = "==0.3.10" },
@@ -1501,11 +1501,11 @@ wheels = [
 
 [[package]]
 name = "jupyterlab-favorites"
-version = "3.3.0"
+version = "3.3.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6e/ef/757f059af41d5cb2f151b85d63e6f02e3ef09dddfc9779ce8db17001b33a/jupyterlab_favorites-3.3.0.tar.gz", hash = "sha256:7f259a3c89547e0815d2970e62ab1cc7fa33b3b4c25581ca854d1380df30e8a4", size = 590219, upload-time = "2025-11-24T11:50:44.146Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f4/40/496859251089fd61466e8f782ecc927b203e1cdf92203b4bc361e4ffdd56/jupyterlab_favorites-3.3.1.tar.gz", hash = "sha256:7e06a11c6dffaee0e76ca3c5d9196688286c6861606770eb0ea2178e5d17070e", size = 633022, upload-time = "2025-12-16T17:45:31.735Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6a/1c/672efeb16625b790a66010e77f889007c642623d0be6bfd22d82744f85d9/jupyterlab_favorites-3.3.0-py3-none-any.whl", hash = "sha256:2fbe88ce9da2463197c2ce14e9b0bb2104d216c051819134bdaabd9f29b5bf72", size = 25501, upload-time = "2025-11-24T11:50:42.418Z" },
+    { url = "https://files.pythonhosted.org/packages/3d/17/b395a36184fed4091b4b8cde4197e08338e5b3773436cc849927ff6753e5/jupyterlab_favorites-3.3.1-py3-none-any.whl", hash = "sha256:90e32e8584cae061f332fa436f0a7a39e915fafe33c36343d565e7c905d0efcd", size = 26237, upload-time = "2025-12-16T17:45:30.085Z" },
 ]
 
 [[package]]
