@@ -6,7 +6,7 @@ RUN gradle copyLibs --no-daemon
 RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependencies.txt
 
 # This is a spark-4.0.1 tag from November 2025
-FROM quay.io/jupyter/pyspark-notebook@sha256:6287c0ba787930d8dec08f8c5c81866b1e86be14adbfb3efe2b18d4e5db877ff
+FROM quay.io/jupyter/pyspark-notebook@sha256:0381a3db0df7cb563db35484a11d4373ac833a0c878b70797c3ca15d947b5bbb
 
 USER root
 ENV MC_VER=2016-02-19T04-11-55Z
