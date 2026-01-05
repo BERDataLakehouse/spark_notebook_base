@@ -13,11 +13,11 @@ dependencies = [
     "jupyter-ai-cborg",
     "minio-manager-service-client",
     "attrs==25.4.0",
-    "boto3==1.42.0",
+    "boto3==1.42.19",
     "hmsclient>=0.1.1",
     "httpx==0.28.1",
-    "itables==2.5.2",
-    "jupyterlab-favorites==3.3.0",
+    "itables==2.6.2",
+    "jupyterlab-favorites==3.3.1",
     "minio==7.2.20",
     "pandas==2.3.3",
     "pip==25.3",
@@ -26,7 +26,7 @@ dependencies = [
     "delta-spark==4.0.0",
     "py4j==0.10.9.9",
     "pydantic-settings==2.12.0",
-    "pyspark[connect]==4.0.1",
+    "pyspark[connect]==4.1.0",
     # Jupyter AI dependencies
     "jupyter-ai==2.31.7",
     "langchain-openai==0.3.35", # Keep at 0.3.x for jupyter-ai compatibility
@@ -34,7 +34,7 @@ dependencies = [
     "langchain-ollama==0.3.10", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-mcp-tools==0.2.13", # Automatic MCP tool discovery for FastApiMCP servers
     "websockets==15.0.1", # Required by langchain-mcp-tools
-    "huggingface-hub==1.1.7",
+    "huggingface-hub==1.2.3",
     "berdl-access-request",
 ]
 
