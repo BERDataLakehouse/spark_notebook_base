@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -272,7 +272,7 @@ requires-dist = [
     { name = "boto3", specifier = "==1.42.19" },
     { name = "cdm-jupyterlab-brand-extension", url = "https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
-    { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.1" },
+    { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.2" },
     { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" },
     { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.4" },
     { name = "delta-spark", specifier = "==4.0.0" },
@@ -372,7 +372,7 @@ dependencies = [
 [[package]]
 name = "cdm-task-service-client"
 version = "0.2.1"
-source = { git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.1#db1dccf3c9fcddc83c0a3881337fe4ebafcd1cba" }
+source = { git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.2#0cd4eea1274bbd9eb7975797ff47ed2e8485bfbe" }
 dependencies = [
     { name = "requests" },
 ]
