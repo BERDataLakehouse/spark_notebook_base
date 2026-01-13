@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -272,9 +272,9 @@ requires-dist = [
     { name = "boto3", specifier = "==1.42.19" },
     { name = "cdm-jupyterlab-brand-extension", url = "https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
-    { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.1" },
+    { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.2" },
     { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" },
-    { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.4" },
+    { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.5" },
     { name = "delta-spark", specifier = "==4.0.0" },
     { name = "hmsclient", specifier = ">=0.1.1" },
     { name = "httpx", specifier = "==0.28.1" },
@@ -372,7 +372,7 @@ dependencies = [
 [[package]]
 name = "cdm-task-service-client"
 version = "0.2.1"
-source = { git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.1#db1dccf3c9fcddc83c0a3881337fe4ebafcd1cba" }
+source = { git = "https://github.com/kbase/cdm-task-service-client.git?rev=0.2.2#0cd4eea1274bbd9eb7975797ff47ed2e8485bfbe" }
 dependencies = [
     { name = "requests" },
 ]
@@ -604,7 +604,7 @@ wheels = [
 [[package]]
 name = "datalake-mcp-server-client"
 version = "0.0.1"
-source = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.4#104fdd51233fc2724947672750de265a3242e939" }
+source = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.5#10f29a372a344c25fedad43d7b6a86aedd3276d4" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
