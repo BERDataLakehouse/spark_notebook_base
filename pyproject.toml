@@ -5,7 +5,6 @@ description = "BERDL Notebook Environment"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "cdm-jupyterlab-brand-extension",
     "cdm-spark-manager-client",
     "cdm-task-service-client",
     "cdm-tree-browser",
@@ -36,18 +35,18 @@ dependencies = [
     "websockets==15.0.1", # Required by langchain-mcp-tools
     "huggingface-hub==1.2.3",
     "berdl-access-request",
+    "berdl-jupyterlab-coreui",
 ]
 
 [tool.uv.sources]
-
-cdm-jupyterlab-brand-extension = { url = "https://github.com/kbaseincubator/cdm_jupyterlab_brand_extension/raw/main/dist/cdm_jupyterlab_brand_extension-0.1.0-py3-none-any.whl" }
 cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }
-cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.2.2" }
+cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.2.1" }
 cdm-tree-browser = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" }
 datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.5" }
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
 minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.7" }
 berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git", rev = "v0.0.3" }
+berdl-jupyterlab-coreui = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.3/berdl_jupyterlab_coreui-0.0.3-py3-none-any.whl" }
 
 [dependency-groups]
 dev = [
