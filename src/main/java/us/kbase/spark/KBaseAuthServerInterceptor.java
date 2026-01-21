@@ -4,13 +4,14 @@
  * This gRPC server interceptor validates KBase authentication tokens for
  * Spark Connect requests. It provides:
  *
- * - Localhost bypass: Local connections (127.0.0.1, ::1) are allowed without tokens
+ * - Same-pod bypass: Connections from localhost or the pod's own IP are allowed without tokens
  * - Token validation: Remote connections require valid KBase tokens
  * - User verification: Token username must match the pod owner (USER env var)
  *
  * Configuration (environment variables):
  * - KBASE_AUTH_URL: KBase Auth2 service URL (required)
  * - USER: Pod owner username (required for remote access validation)
+ * - BERDL_POD_IP: Pod's own IP address (for same-pod detection via K8s Service)
  *
  * Enable in spark-defaults.conf:
  *   spark.connect.grpc.interceptor.classes=us.kbase.spark.KBaseAuthServerInterceptor
@@ -41,7 +42,7 @@ import java.util.logging.Logger;
  * <p>This interceptor is designed for Spark Connect servers running in Kubernetes
  * pods where each user has their own dedicated Spark cluster. It allows:
  * <ul>
- *   <li>Local connections without authentication (for notebooks in the same pod)</li>
+ *   <li>Same-pod connections without authentication (localhost or pod's own IP)</li>
  *   <li>Remote connections with KBase token authentication</li>
  * </ul>
  */
@@ -57,6 +58,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
 
     private final String authUrl;
     private final String podOwner;
+    private final String podIp;
     private final HttpClient httpClient;
 
     /**
@@ -74,6 +76,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         }
         this.authUrl = envAuthUrl;
         this.podOwner = System.getenv("USER");
+        this.podIp = System.getenv("BERDL_POD_IP");
         this.httpClient = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
@@ -81,6 +84,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         LOGGER.info("KBase Auth Interceptor initialized:");
         LOGGER.info("  Auth URL: " + this.authUrl);
         LOGGER.info("  Pod Owner: " + this.podOwner);
+        LOGGER.info("  Pod IP: " + (this.podIp != null ? this.podIp : "(not set)"));
     }
 
     @Override
@@ -90,10 +94,13 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
             ServerCallHandler<ReqT, RespT> next) {
 
         // =====================================================
-        // LOCALHOST BYPASS: Skip validation for local connections
+        // SAME-POD BYPASS: Skip validation for same-pod connections
         // =====================================================
         // This allows notebooks running in the same pod to connect
         // without authentication, while requiring tokens for remote access.
+        // Same-pod connections can come from:
+        // 1. Loopback addresses (127.0.0.1, ::1) - direct localhost connection
+        // 2. Pod's own IP - when connecting via K8s Service DNS name
 
         SocketAddress remoteAddr = call.getAttributes().get(Grpc.TRANSPORT_ATTR_REMOTE_ADDR);
         LOGGER.fine("Incoming connection - remoteAddr: " + remoteAddr);
@@ -102,12 +109,13 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
             InetSocketAddress inetAddr = (InetSocketAddress) remoteAddr;
             String hostAddress = inetAddr.getAddress().getHostAddress();
             boolean isLoopback = inetAddr.getAddress().isLoopbackAddress();
-            LOGGER.fine("Connection from IP: " + hostAddress + " (isLoopback: " + isLoopback + ")");
+            boolean isSamePod = isLoopback || isSamePodConnection(hostAddress);
+            LOGGER.fine("Connection from IP: " + hostAddress + " (isLoopback: " + isLoopback + ", isSamePod: " + isSamePod + ")");
 
-            // Allow localhost connections without authentication
-            // Use isLoopbackAddress() to handle all forms of localhost (127.0.0.1, ::1, 0:0:0:0:0:0:0:1, etc.)
-            if (isLoopback) {
-                LOGGER.fine("Allowing local connection from " + hostAddress + " without auth");
+            // Allow same-pod connections without authentication
+            // This handles both direct localhost connections and connections via K8s Service
+            if (isSamePod) {
+                LOGGER.fine("Allowing same-pod connection from " + hostAddress + " without auth");
                 return next.startCall(call, headers);
             }
 
@@ -226,5 +234,23 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
             throw new RuntimeException("Malformed JSON response");
         }
         return json.substring(start, end);
+    }
+
+    /**
+     * Check if the connection is from the same pod (via K8s Service).
+     *
+     * When the notebook connects via K8s Service DNS (e.g., jupyter-user.namespace:15002),
+     * the connection appears to come from the pod's own IP, not localhost.
+     * This method detects such same-pod connections by comparing the source IP
+     * with the pod's IP from BERDL_POD_IP environment variable.
+     *
+     * @param sourceIp The source IP address of the connection
+     * @return true if the connection is from the same pod, false otherwise
+     */
+    private boolean isSamePodConnection(String sourceIp) {
+        if (podIp == null || podIp.isEmpty() || sourceIp == null) {
+            return false;
+        }
+        return sourceIp.equals(podIp);
     }
 }
