@@ -265,7 +265,15 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
     }
 
     /**
-     * Remove IPv6 mapping prefix if present to normalize IPv4 addresses.
+     * Normalizes an IP address string by removing the IPv4-mapped IPv6 prefix if present.
+     * <p>
+     * This is used to treat IPv4-mapped IPv6 addresses (e.g., {@code ::ffff:127.0.0.1})
+     * as their plain IPv4 equivalent ({@code 127.0.0.1}) so that string comparisons
+     * between source and pod IPs are consistent.
+     *
+     * @param ip the IP address string to normalize; may be {@code null}
+     * @return the normalized IP address string with any {@code ::ffff:} prefix removed,
+     *         or {@code null} if the input was {@code null}
      */
     private String normalizeIp(String ip) {
         if (ip == null) return null;
