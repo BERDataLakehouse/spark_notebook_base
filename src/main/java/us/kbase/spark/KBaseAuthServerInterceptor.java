@@ -103,25 +103,25 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         // 2. Pod's own IP - when connecting via K8s Service DNS name
 
         SocketAddress remoteAddr = call.getAttributes().get(Grpc.TRANSPORT_ATTR_REMOTE_ADDR);
-        LOGGER.fine("Incoming connection - remoteAddr: " + remoteAddr);
+        LOGGER.info("Incoming connection - remoteAddr: " + remoteAddr);
 
         if (remoteAddr instanceof InetSocketAddress) {
             InetSocketAddress inetAddr = (InetSocketAddress) remoteAddr;
             String hostAddress = inetAddr.getAddress().getHostAddress();
             boolean isLoopback = inetAddr.getAddress().isLoopbackAddress();
             boolean isSamePod = isLoopback || isSamePodConnection(hostAddress);
-            LOGGER.fine("Connection from IP: " + hostAddress + " (isLoopback: " + isLoopback + ", isSamePod: " + isSamePod + ")");
+            LOGGER.info("Connection from IP: " + hostAddress + " (isLoopback: " + isLoopback + ", isSamePod: " + isSamePod + ")");
 
             // Allow same-pod connections without authentication
             // This handles both direct localhost connections and connections via K8s Service
             if (isSamePod) {
-                LOGGER.fine("Allowing same-pod connection from " + hostAddress + " without auth");
+                LOGGER.info("Allowing same-pod connection from " + hostAddress + " without auth");
                 return next.startCall(call, headers);
             }
 
-            LOGGER.fine("Remote connection from " + hostAddress + " - requiring authentication");
+            LOGGER.info("Remote connection from " + hostAddress + " - requiring authentication");
         } else {
-            LOGGER.warning("Remote address is not InetSocketAddress: " +
+            LOGGER.info("Remote address is not InetSocketAddress: " +
                 (remoteAddr != null ? remoteAddr.getClass().getName() : "null"));
         }
 
@@ -133,7 +133,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         String token = extractToken(headers);
 
         if (token == null) {
-            LOGGER.warning("Missing authentication token for remote connection");
+            LOGGER.info("Missing authentication token for remote connection");
             call.close(
                     Status.UNAUTHENTICATED.withDescription("Missing authentication token. " +
                             "Remote connections require a valid KBase token in the 'authorization' header."),
@@ -156,7 +156,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
                 return new ServerCall.Listener<>() {};
             }
 
-            LOGGER.fine("Authenticated request from user: " + username);
+            LOGGER.info("Authenticated request from user: " + username);
 
             // Token valid, proceed with request
             return next.startCall(call, headers);
@@ -249,8 +249,29 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
      */
     private boolean isSamePodConnection(String sourceIp) {
         if (podIp == null || podIp.isEmpty() || sourceIp == null) {
+            LOGGER.info("isSamePodConnection: missing IP info - podIp=" + podIp + ", sourceIp=" + sourceIp);
             return false;
         }
-        return sourceIp.equals(podIp);
+
+        // Normalize IPs to handle IPv4-mapped IPv6 addresses (e.g., ::ffff:127.0.0.1)
+        String normalizedSource = normalizeIp(sourceIp);
+        String normalizedPodIp = normalizeIp(podIp);
+
+        boolean match = normalizedSource.equals(normalizedPodIp);
+        LOGGER.info(String.format("isSamePodConnection check: sourceIp='%s' (norm='%s') vs podIp='%s' (norm='%s') -> match=%s", 
+            sourceIp, normalizedSource, podIp, normalizedPodIp, match));
+
+        return match;
+    }
+
+    /**
+     * Remove IPv6 mapping prefix if present to normalize IPv4 addresses.
+     */
+    private String normalizeIp(String ip) {
+        if (ip == null) return null;
+        if (ip.startsWith("::ffff:")) {
+            return ip.substring(7);
+        }
+        return ip;
     }
 }
