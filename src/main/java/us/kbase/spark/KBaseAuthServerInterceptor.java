@@ -54,8 +54,6 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
             Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
     private static final Metadata.Key<String> KBASE_TOKEN_KEY =
             Metadata.Key.of("x-kbase-token", Metadata.ASCII_STRING_MARSHALLER);
-    private static final Metadata.Key<String> KBASE_USER_KEY =
-            Metadata.Key.of("x-kbase-user", Metadata.ASCII_STRING_MARSHALLER);
 
     private final String authUrl;
     private final String podOwner;
@@ -98,22 +96,22 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         // without authentication, while requiring tokens for remote access.
 
         SocketAddress remoteAddr = call.getAttributes().get(Grpc.TRANSPORT_ATTR_REMOTE_ADDR);
-        LOGGER.info("Incoming connection - remoteAddr: " + remoteAddr);
+        LOGGER.fine("Incoming connection - remoteAddr: " + remoteAddr);
 
         if (remoteAddr instanceof InetSocketAddress) {
             InetSocketAddress inetAddr = (InetSocketAddress) remoteAddr;
             String hostAddress = inetAddr.getAddress().getHostAddress();
             boolean isLoopback = inetAddr.getAddress().isLoopbackAddress();
-            LOGGER.info("Connection from IP: " + hostAddress + " (isLoopback: " + isLoopback + ")");
+            LOGGER.fine("Connection from IP: " + hostAddress + " (isLoopback: " + isLoopback + ")");
 
             // Allow localhost connections without authentication
             // Use isLoopbackAddress() to handle all forms of localhost (127.0.0.1, ::1, 0:0:0:0:0:0:0:1, etc.)
             if (isLoopback) {
-                LOGGER.info("Allowing local connection from " + hostAddress + " without auth");
+                LOGGER.fine("Allowing local connection from " + hostAddress + " without auth");
                 return next.startCall(call, headers);
             }
 
-            LOGGER.info("Remote connection from " + hostAddress + " - requiring authentication");
+            LOGGER.fine("Remote connection from " + hostAddress + " - requiring authentication");
         } else {
             LOGGER.warning("Remote address is not InetSocketAddress: " +
                 (remoteAddr != null ? remoteAddr.getClass().getName() : "null"));
@@ -158,7 +156,8 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Token validation failed", e);
             call.close(
-                    Status.UNAUTHENTICATED.withDescription("Token validation failed: " + e.getMessage()),
+                    Status.UNAUTHENTICATED.withDescription(
+                            "Authentication failed. Please check your token."),
                     headers);
             return new ServerCall.Listener<>() {};
         }
@@ -193,7 +192,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(tokenEndpoint))
                 .header("Authorization", token)
-                .timeout(Duration.ofSeconds(30))
+                .timeout(Duration.ofSeconds(10))
                 .GET()
                 .build();
 
@@ -206,6 +205,9 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
         // Parse JSON response to extract username
         // Using simple parsing to avoid additional dependencies
         String body = response.body();
+        if (body == null || body.trim().isEmpty()) {
+            throw new RuntimeException("KBase auth service returned an empty response body");
+        }
         return extractJsonField(body, "user");
     }
 

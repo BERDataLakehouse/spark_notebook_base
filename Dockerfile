@@ -1,5 +1,5 @@
 FROM gradle:9.1.0-jdk24-ubi-minimal AS builder
-# Setup Java dependencies. Cut a release to build this image on GHA
+# Build Java dependencies (JARs are copied to Spark jars directory below)
 WORKDIR /build
 COPY build.gradle.kts .
 COPY src/ src/
