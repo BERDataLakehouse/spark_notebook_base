@@ -199,13 +199,13 @@ dependencies = [
 
 [[package]]
 name = "berdl-jupyterlab-coreui"
-version = "0.0.3"
-source = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.3/berdl_jupyterlab_coreui-0.0.3-py3-none-any.whl" }
+version = "0.0.4"
+source = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.3/berdl_jupyterlab_coreui-0.0.3-py3-none-any.whl", hash = "sha256:7d8e41b1c2259006a13d2813fe3c5b0dce224e4660c4f081c1f295815f1a303e" },
+    { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl", hash = "sha256:c4907f6ebe12bf49e4dd44f0ff8977227ec64b2ca3f1f79d84196a6ee1011070" },
 ]
 
 [package.metadata]
@@ -265,7 +265,7 @@ dev = [
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
     { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.3" },
-    { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.3/berdl_jupyterlab_coreui-0.0.3-py3-none-any.whl" },
+    { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" },
     { name = "boto3", specifier = "==1.42.19" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.3" },
