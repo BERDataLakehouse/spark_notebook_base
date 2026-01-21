@@ -83,7 +83,7 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
             LOGGER.info("Missing authentication token");
             call.close(
                     Status.UNAUTHENTICATED.withDescription(
-                            "Missing authentication token. Provide a valid KBase token in the 'authorization' header."),
+                            "Missing authentication token. Provide a valid KBase token in the 'authorization' header (Bearer format) or the 'x-kbase-token' header."),
                     headers);
             return new ServerCall.Listener<>() {};
         }
