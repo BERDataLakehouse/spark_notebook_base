@@ -269,7 +269,8 @@ public class KBaseAuthServerInterceptor implements ServerInterceptor {
      */
     private String normalizeIp(String ip) {
         if (ip == null) return null;
-        if (ip.startsWith("::ffff:")) {
+        // Handle IPv4-mapped IPv6 addresses with case-insensitive prefix match (e.g., ::ffff:127.0.0.1 or ::FFFF:127.0.0.1)
+        if (ip.regionMatches(true, 0, "::ffff:", 0, 7)) {
             return ip.substring(7);
         }
         return ip;
