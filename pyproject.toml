@@ -22,7 +22,7 @@ dependencies = [
     "pip==25.3",
     "sidecar==0.8.0",
     # Note these dependencies are already in the container, but we should explicitly call them out here
-    "delta-spark==4.0.0",
+    "delta-spark==4.0.1",
     "py4j==0.10.9.9",
     "pydantic-settings==2.12.0",
     "pyspark[connect]==4.1.0",
