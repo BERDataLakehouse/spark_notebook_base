@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -346,10 +346,10 @@ dependencies = [
     { name = "attrs" },
     { name = "berdl-access-request" },
     { name = "berdl-jupyterlab-coreui" },
+    { name = "berdl-task-browser" },
     { name = "boto3" },
     { name = "cdm-spark-manager-client" },
     { name = "cdm-task-service-client" },
-    { name = "cdm-tree-browser" },
     { name = "datalake-mcp-server-client" },
     { name = "delta-spark" },
     { name = "hmsclient" },
@@ -373,6 +373,7 @@ dependencies = [
     { name = "pyspark", extra = ["connect"] },
     { name = "s3contents" },
     { name = "sidecar" },
+    { name = "tenant-data-browser" },
     { name = "websockets" },
 ]
 
@@ -386,10 +387,10 @@ requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
     { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.3" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" },
+    { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl" },
     { name = "boto3", specifier = "==1.42.19" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.3" },
-    { name = "cdm-tree-browser", url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" },
     { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.5" },
     { name = "delta-spark", specifier = "==4.0.1" },
     { name = "hmsclient", specifier = "==0.1.1" },
@@ -413,11 +414,30 @@ requires-dist = [
     { name = "pyspark", extras = ["connect"], specifier = "==4.1.1" },
     { name = "s3contents", specifier = "==0.11.2" },
     { name = "sidecar", specifier = "==0.8.0" },
+    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.0/tenant_data_browser-0.3.0-py3-none-any.whl" },
     { name = "websockets", specifier = "==15.0.1" },
 ]
 
 [package.metadata.requires-dev]
 dev = [{ name = "wheel", specifier = ">=0.46.3" }]
+
+[[package]]
+name = "berdl-task-browser"
+version = "0.2.0"
+source = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl" }
+dependencies = [
+    { name = "ipywidgets" },
+    { name = "requests" },
+]
+wheels = [
+    { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl", hash = "sha256:b32560260ff4f28a178f787a12948cdec1acf8631116ec870d921350eb6c8fce" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "ipywidgets", specifier = ">=8.0.0" },
+    { name = "requests", specifier = ">=2.25.0" },
+]
 
 [[package]]
 name = "bleach"
@@ -479,14 +499,6 @@ version = "0.2.1"
 source = { git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.3#4b5da002b4c6484fe55a9ddc0056427353c352a3" }
 dependencies = [
     { name = "requests" },
-]
-
-[[package]]
-name = "cdm-tree-browser"
-version = "0.1.0"
-source = { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl" }
-wheels = [
-    { url = "https://github.com/kbaseincubator/cdm-tree-browser/releases/download/0.2.0/cdm_tree_browser-0.1.0-py3-none-any.whl", hash = "sha256:7b88d150161c36a493e96ab0f8707dbe1c6f874884ee906e51aff983b3d0add3" },
 ]
 
 [[package]]
@@ -4158,6 +4170,14 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/0a/d4/2b0cd0fe285e14b36db076e78c93766ff1d529d70408bd1d2a5a84f1d929/tenacity-9.1.2.tar.gz", hash = "sha256:1169d376c297e7de388d18b4481760d478b0e99a777cad3a9c86e556f4b697cb", size = 48036, upload-time = "2025-04-02T08:25:09.966Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e5/30/643397144bfbfec6f6ef821f36f33e57d35946c44a2352d3c9f0ae847619/tenacity-9.1.2-py3-none-any.whl", hash = "sha256:f77bf36710d8b73a50b2dd155c97b870017ad21afe6ab300326b0371b3b05138", size = 28248, upload-time = "2025-04-02T08:25:07.678Z" },
+]
+
+[[package]]
+name = "tenant-data-browser"
+version = "0.3.0"
+source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.0/tenant_data_browser-0.3.0-py3-none-any.whl" }
+wheels = [
+    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.0/tenant_data_browser-0.3.0-py3-none-any.whl", hash = "sha256:b4d9e4d24a32e872c0d74346579b3e42cd49ed8b832043e8bc17c486db97a3f4" },
 ]
 
 [[package]]
