@@ -68,6 +68,12 @@ jobs:
           sed -i 's/^version = .*/version = "${{ steps.version.outputs.version }}"/' pyproject.toml
           echo "Updated pyproject.toml to version ${{ steps.version.outputs.version }}"
 
+      - name: Lowercase repository name
+        id: repo_name
+        run: |
+          REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "repo=${REPO_LOWER}" >> $GITHUB_OUTPUT
+
       - name: Login to GHCR
         if: steps.version.outputs.version != ''
         uses: docker/login-action@v3
@@ -83,8 +89,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.tag_name }}
-            ${{ steps.version.outputs.is_prerelease == 'false' && format('ghcr.io/{0}:latest', github.repository) || '' }}
+            ghcr.io/${{ steps.repo_name.outputs.repo }}:${{ steps.version.outputs.tag_name }}
+            ${{ steps.version.outputs.is_prerelease == 'false' && format('ghcr.io/{0}:latest', steps.repo_name.outputs.repo) || '' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -148,7 +154,7 @@ jobs:
         with:
           script: |
             const tagName = '${{ steps.version.outputs.tag_name }}';
-            const dockerImage = `ghcr.io/${{ github.repository }}:${tagName}`;
+            const dockerImage = `ghcr.io/${{ steps.repo_name.outputs.repo }}:${tagName}`;
             
             const body = `## 🐳 Docker Preview Release Ready
             
