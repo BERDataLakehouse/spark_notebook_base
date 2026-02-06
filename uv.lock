@@ -319,9 +319,10 @@ wheels = [
 [[package]]
 name = "berdl-access-request"
 version = "0.1.0"
-source = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.3#fdfa96305e35f173ffb90b07ba6dfdb214a5b190" }
+source = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.5#e2f6a88c8231f9ddfd697acc463693809434c38b" }
 dependencies = [
     { name = "jupyter-server" },
+    { name = "pyyaml" },
 ]
 
 [[package]]
@@ -395,7 +396,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
-    { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.3" },
+    { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.5" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl" },
     { name = "boto3", specifier = "==1.42.19" },
