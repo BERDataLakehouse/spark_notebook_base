@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -326,13 +326,13 @@ dependencies = [
 
 [[package]]
 name = "berdl-jupyterlab-coreui"
-version = "0.0.4"
-source = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" }
+version = "0.0.5"
+source = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.5/berdl_jupyterlab_coreui-0.0.5-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl", hash = "sha256:c4907f6ebe12bf49e4dd44f0ff8977227ec64b2ca3f1f79d84196a6ee1011070" },
+    { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.5/berdl_jupyterlab_coreui-0.0.5-py3-none-any.whl", hash = "sha256:afa43ac483211b59d684b82b3d9a77978966f9d3b8b4af0abd710a208817f624" },
 ]
 
 [package.metadata]
@@ -396,8 +396,8 @@ dev = [
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
     { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.3" },
-    { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" },
-    { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl" },
+    { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.5/berdl_jupyterlab_coreui-0.0.5-py3-none-any.whl" },
+    { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
     { name = "boto3", specifier = "==1.42.19" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.3" },
@@ -425,7 +425,7 @@ requires-dist = [
     { name = "pyspark", extras = ["connect"], specifier = "==4.1.1" },
     { name = "s3contents", specifier = "==0.11.2" },
     { name = "sidecar", specifier = "==0.8.0" },
-    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.1/tenant_data_browser-0.3.1-py3-none-any.whl" },
+    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl" },
     { name = "websockets", specifier = "==15.0.1" },
 ]
 
@@ -434,14 +434,14 @@ dev = [{ name = "wheel", specifier = ">=0.46.3" }]
 
 [[package]]
 name = "berdl-task-browser"
-version = "0.2.0"
-source = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl" }
+version = "0.2.1"
+source = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" }
 dependencies = [
     { name = "ipywidgets" },
     { name = "requests" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl", hash = "sha256:b32560260ff4f28a178f787a12948cdec1acf8631116ec870d921350eb6c8fce" },
+    { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl", hash = "sha256:6f593590aed4047a276a1af21527309a9f51c25d4a725ec120398efff95f6f74" },
 ]
 
 [package.metadata]
@@ -4214,10 +4214,10 @@ wheels = [
 
 [[package]]
 name = "tenant-data-browser"
-version = "0.3.1"
-source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.1/tenant_data_browser-0.3.1-py3-none-any.whl" }
+version = "0.3.2"
+source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl" }
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.1/tenant_data_browser-0.3.1-py3-none-any.whl", hash = "sha256:c26792633dde61008b2931f03c3b855a4da816cc2a21dec5e080dded8194dc83" },
+    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl", hash = "sha256:31d0547382d55b72387ef26e9d4f4197a6932ee22f5ba02800bbeb1e0aecfd7e" },
 ]
 
 [[package]]
