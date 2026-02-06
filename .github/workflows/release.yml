@@ -1,0 +1,196 @@
+name: Release Management
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set version variables
+        id: version
+        run: |
+          PR_NUMBER="${{ github.event.number }}"
+          
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            # Main branch push (merge) - create stable release
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+            LATEST_VERSION=${LATEST_TAG#v}
+            IFS='.' read -r major minor patch <<< "$LATEST_VERSION"
+            NEW_PATCH=$((patch + 1))
+            VERSION="${major}.${minor}.${NEW_PATCH}"
+            TAG_NAME="v${VERSION}"
+            RELEASE_NAME="Release v${VERSION}"
+            IS_PRERELEASE="false"
+            echo "Creating stable release: ${TAG_NAME}"
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            # PR opened/updated - create/update preview release
+            # Use 'alpha' for versioning
+            VERSION="0.0.0-alpha.${PR_NUMBER}"
+            TAG_NAME="v${VERSION}"
+            RELEASE_NAME="PR #${PR_NUMBER} Preview"
+            IS_PRERELEASE="true"
+            echo "Creating/updating preview release for PR #${PR_NUMBER}"
+          else
+            echo "Skipping version generation"
+            exit 0
+          fi
+          
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "tag_name=${TAG_NAME}" >> $GITHUB_OUTPUT
+          echo "release_name=${RELEASE_NAME}" >> $GITHUB_OUTPUT
+          echo "is_prerelease=${IS_PRERELEASE}" >> $GITHUB_OUTPUT
+          echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+
+      - name: Update version in pyproject.toml
+        if: steps.version.outputs.version != ''
+        run: |
+          sed -i 's/^version = .*/version = "${{ steps.version.outputs.version }}"/' pyproject.toml
+          echo "Updated pyproject.toml to version ${{ steps.version.outputs.version }}"
+
+      - name: Login to GHCR
+        if: steps.version.outputs.version != ''
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        if: steps.version.outputs.version != ''
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.tag_name }}
+            ${{ steps.version.outputs.is_prerelease == 'false' && format('ghcr.io/{0}:latest', github.repository) || '' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Delete existing PR tag/release (if exists)
+        if: github.event_name == 'pull_request'
+        run: |
+          if git ls-remote --tags origin | grep -q "${{ steps.version.outputs.tag_name }}"; then
+            git push --delete origin "${{ steps.version.outputs.tag_name }}" || true
+          fi
+          gh release delete "${{ steps.version.outputs.tag_name }}" --yes || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete old PR tag when merged
+        if: github.event.pull_request.merged == true
+        run: |
+          OLD_TAG="v0.0.0-alpha.${{ github.event.number }}"
+          if git ls-remote --tags origin | grep -q "${OLD_TAG}"; then
+            git push --delete origin "${OLD_TAG}" || true
+            gh release delete "${OLD_TAG}" --yes || true
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create and push tag
+        if: steps.version.outputs.version != ''
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -d "${{ steps.version.outputs.tag_name }}" 2>/dev/null || true
+          git tag -a "${{ steps.version.outputs.tag_name }}" -m "${{ steps.version.outputs.release_name }}"
+          git push origin "${{ steps.version.outputs.tag_name }}"
+
+      - name: Create GitHub Release
+        if: steps.version.outputs.version != ''
+        run: |
+          if [ "${{ steps.version.outputs.is_prerelease }}" = "true" ]; then
+            BODY="## Preview Release for PR #${{ steps.version.outputs.pr_number }}
+            **This is a preview release.**
+            
+            ### Use in Spark Notebook
+            Update your \`Dockerfile\`:
+            \`\`\`dockerfile
+            ARG BASE_TAG=${{ steps.version.outputs.tag_name }}
+            \`\`\`
+            "
+          else
+             BODY="## Release ${{ steps.version.outputs.tag_name }}"
+          fi
+
+          gh release create "${{ steps.version.outputs.tag_name }}" \
+            --title "${{ steps.version.outputs.release_name }}" \
+            --notes "${BODY}" \
+            $([ "${{ steps.version.outputs.is_prerelease }}" = "true" ] && echo "--prerelease")
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on PR with release info
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tagName = '${{ steps.version.outputs.tag_name }}';
+            const dockerImage = `ghcr.io/${{ github.repository }}:${tagName}`;
+            
+            const body = `## 🐳 Docker Preview Release Ready
+            
+            A preview Docker image has been built and pushed.
+            
+            ### Use in spark_notebook
+            In your \`Dockerfile\`:
+            \`\`\`dockerfile
+            ARG BASE_TAG=${tagName}
+            \`\`\`
+            
+            ### Pull manually
+            \`\`\`bash
+            docker pull ${dockerImage}
+            \`\`\`
+            
+            ([View Release](https://github.com/${{ github.repository }}/releases/tag/${tagName}))
+            `;
+
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existingComment = comments.data.find(comment =>
+              comment.user.login === 'github-actions[bot]' &&
+              comment.body.includes('Docker Preview Release Ready')
+            );
+
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
