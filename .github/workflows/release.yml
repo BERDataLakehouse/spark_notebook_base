@@ -104,9 +104,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: |
-            ghcr.io/${{ steps.repo_name.outputs.repo }}:${{ steps.version.outputs.tag_name }}
-            ${{ steps.version.outputs.is_prerelease == 'false' && format('ghcr.io/{0}:latest', steps.repo_name.outputs.repo) || '' }}
+          tags: >-
+            ghcr.io/${{ steps.repo_name.outputs.repo }}:${{ steps.version.outputs.tag_name }}${{ steps.version.outputs.is_prerelease == 'false' && format(',ghcr.io/{0}:latest', steps.repo_name.outputs.repo) || '' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
