@@ -152,7 +152,7 @@ jobs:
             \`\`\`
             "
           else
-             BODY="## Release ${{ steps.version.outputs.tag_name }}"
+            BODY="## Release ${{ steps.version.outputs.tag_name }}"
           fi
 
           gh release create "${{ steps.version.outputs.tag_name }}" \
