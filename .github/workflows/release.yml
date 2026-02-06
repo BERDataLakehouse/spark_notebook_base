@@ -1,6 +1,7 @@
 name: Release Management
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -9,7 +10,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   release:
@@ -20,6 +21,17 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -164,8 +176,8 @@ jobs:
             
             A preview Docker image has been built and pushed.
             
-            ### Use in spark_notebook
-            In your \`Dockerfile\`:
+            ### Use in downstream images
+            In your \`Dockerfile\` (e.g., \`spark_notebook\`):
             \`\`\`dockerfile
             ARG BASE_TAG=${tagName}
             \`\`\`
