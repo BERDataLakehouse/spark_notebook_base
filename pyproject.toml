@@ -36,7 +36,7 @@ dependencies = [
     "langchain-anthropic==0.3.22", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-ollama==0.3.10", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-mcp-tools==0.2.13", # Automatic MCP tool discovery for FastApiMCP servers
-    "websockets==15.0.1", # Required by langchain-mcp-tools
+    "websockets==16.0", # Required by langchain-mcp-tools
     "huggingface-hub==1.3.5",
     "berdl-access-request",
     "berdl-jupyterlab-coreui",
@@ -49,8 +49,8 @@ cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-mana
 datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.5" }
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
 minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.7" }
-berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git", rev = "v0.0.3" }
 berdl-jupyterlab-coreui = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.5/berdl_jupyterlab_coreui-0.0.5-py3-none-any.whl" }
+berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git", rev = "v0.0.6" }
 cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client", rev = "0.2.3" }
 berdl-task-browser = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" }
 tenant-data-browser = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl" }
