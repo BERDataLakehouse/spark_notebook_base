@@ -135,9 +135,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -d "${{ steps.version.outputs.tag_name }}" 2>/dev/null || true
           git tag -a "${{ steps.version.outputs.tag_name }}" -m "${{ steps.version.outputs.release_name }}"
-          git push origin "${{ steps.version.outputs.tag_name }}"
+          git push --force origin "${{ steps.version.outputs.tag_name }}"
 
       - name: Create GitHub Release
         if: steps.version.outputs.version != ''
