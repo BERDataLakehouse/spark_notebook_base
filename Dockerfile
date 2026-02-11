@@ -10,7 +10,7 @@ RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependenc
 FROM quay.io/jupyter/pyspark-notebook@sha256:6287c0ba787930d8dec08f8c5c81866b1e86be14adbfb3efe2b18d4e5db877ff
 
 USER root
-ENV MC_VER=2016-02-19T04-11-55Z
+ENV MC_VER=2025-08-13T08-35-41Z
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gettext \
         vim \
