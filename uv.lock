@@ -426,7 +426,7 @@ requires-dist = [
     { name = "pyspark", extras = ["connect"], specifier = "==4.1.1" },
     { name = "s3contents", specifier = "==0.11.2" },
     { name = "sidecar", specifier = "==0.8.0" },
-    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl" },
+    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.0/tenant_data_browser-0.4.0-py3-none-any.whl" },
     { name = "websockets", specifier = "==16.0" },
 ]
 
@@ -4215,11 +4215,17 @@ wheels = [
 
 [[package]]
 name = "tenant-data-browser"
-version = "0.3.2"
-source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl" }
-wheels = [
-    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.2/tenant_data_browser-0.3.2-py3-none-any.whl", hash = "sha256:31d0547382d55b72387ef26e9d4f4197a6932ee22f5ba02800bbeb1e0aecfd7e" },
+version = "0.4.0"
+source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.0/tenant_data_browser-0.4.0-py3-none-any.whl" }
+dependencies = [
+    { name = "jupyter-server" },
 ]
+wheels = [
+    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.0/tenant_data_browser-0.4.0-py3-none-any.whl", hash = "sha256:b86107ed379bfe019a704b5627ff5dc81619f452dffdf8ef0561bc0c36ddc273" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "jupyter-server", specifier = ">=2.0.0" }]
 
 [[package]]
 name = "terminado"
