@@ -30,7 +30,12 @@ ENV SPARK_HOME=/usr/local/spark
 ENV SPARK_CONF_DIR=${SPARK_HOME}/conf
 ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:/opt/conda/:${PYTHONPATH}
 RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17
-# Install Node.js for building JupyterLab extensions
-RUN eval "$(conda shell.bash hook)" && conda install -y -c conda-forge nodejs
+# Install Node.js, gh CLI, and AI coding assistants (claude, codex)
+# HOME=/root required because ENV HOME= is set above for the build context
+RUN eval "$(conda shell.bash hook)" && conda install -y -c conda-forge nodejs gh
+RUN HOME=/root npm install -g @anthropic-ai/claude-code @openai/codex
+# Allow users to install npm packages to their home dir (PVC-backed, survives restarts)
+ENV NPM_CONFIG_PREFIX=/home/jovyan/.npm-global
+ENV PATH=/home/jovyan/.npm-global/bin:$PATH
 RUN eval "$(conda shell.bash hook)" && uv pip install --system /deps/ && rm -rf /deps
 RUN rm -rf /home/jovyan/

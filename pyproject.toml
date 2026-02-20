@@ -42,6 +42,14 @@ dependencies = [
     "berdl-jupyterlab-coreui",
     "berdl-task-browser",
     "tenant-data-browser",
+    # Computational biology and data science
+    "scikit-learn==1.8.0",
+    "scipy==1.17.0",
+    "biopython==1.86",
+    "matplotlib==3.10.8",
+    "seaborn==0.13.2",
+    "sqlalchemy==2.0.46",
+    "scanpy==1.12",
 ]
 
 [tool.uv.sources]
