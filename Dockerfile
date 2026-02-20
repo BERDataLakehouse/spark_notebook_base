@@ -30,12 +30,14 @@ ENV SPARK_HOME=/usr/local/spark
 ENV SPARK_CONF_DIR=${SPARK_HOME}/conf
 ENV PYTHONPATH=${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-0.10.9.9-src.zip:/opt/conda/:${PYTHONPATH}
 RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17
-# Install Node.js, gh CLI, and AI coding assistants (claude, codex)
+# Install Node.js and GitHub CLI via conda, then AI coding assistants via npm
 # HOME=/root required because ENV HOME= is set above for the build context
 RUN eval "$(conda shell.bash hook)" && conda install -y -c conda-forge nodejs gh
-RUN HOME=/root npm install -g @anthropic-ai/claude-code @openai/codex
+# Pin versions to avoid supply-chain risk from unpinned npm installs at build time
+RUN HOME=/root npm install -g @anthropic-ai/claude-code@2.1.50 @openai/codex@0.104.0
 # Allow users to install npm packages to their home dir (PVC-backed, survives restarts)
-ENV NPM_CONFIG_PREFIX=/home/jovyan/.npm-global
-ENV PATH=/home/jovyan/.npm-global/bin:$PATH
+# Uses profile.d so $HOME is evaluated at login time, not hardcoded to jovyan
+RUN printf 'export NPM_CONFIG_PREFIX="$HOME/.npm-global"\nexport PATH="$HOME/.npm-global/bin:$PATH"\n' \
+    > /etc/profile.d/npm-home.sh
 RUN eval "$(conda shell.bash hook)" && uv pip install --system /deps/ && rm -rf /deps
 RUN rm -rf /home/jovyan/
