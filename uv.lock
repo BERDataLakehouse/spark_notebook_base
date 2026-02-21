@@ -347,8 +347,8 @@ wheels = [
 
 [[package]]
 name = "berdl-access-request"
-version = "0.0.7"
-source = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.7#137b632f012edaa7af6747c1832f318342fc1481" }
+version = "0.0.8"
+source = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.8#6a1e1bb01459f6803466349c99993ed2a14a6593" }
 dependencies = [
     { name = "jupyter-server" },
     { name = "pyyaml" },
@@ -432,7 +432,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
-    { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.7" },
+    { name = "berdl-access-request", git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git?rev=v0.0.8" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
     { name = "biopython", specifier = "==1.86" },
