@@ -53,7 +53,7 @@ berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access
 berdl-jupyterlab-coreui = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.4/berdl_jupyterlab_coreui-0.0.4-py3-none-any.whl" }
 cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client", rev = "0.2.3" }
 berdl-task-browser = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.0/berdl_task_browser-0.2.0-py3-none-any.whl" }
-tenant-data-browser = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.3.1/tenant_data_browser-0.3.1-py3-none-any.whl" }
+tenant-data-browser = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.2/tenant_data_browser-0.4.2-py3-none-any.whl" }
 
 [dependency-groups]
 dev = [
