@@ -22,7 +22,7 @@ dependencies = [
     "hybridcontents==0.4.0",
     "minio==7.2.20",
     "pandas==3.0.0",
-    "pip==26.0",
+    "pip==26.0.1",
     "sidecar==0.8.0",
     "papermill==2.6.0",
     # Note these dependencies are already in the container, but we should explicitly call them out here
