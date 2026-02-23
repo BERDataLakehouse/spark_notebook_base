@@ -448,7 +448,7 @@ requires-dist = [
     { name = "itables", specifier = "==2.6.2" },
     { name = "jupyter-ai", specifier = "==2.31.7" },
     { name = "jupyter-ai-cborg", git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" },
-    { name = "jupyterlab-favorites", specifier = "==3.4.0" },
+    { name = "jupyterlab-favorites", specifier = "==3.5.0" },
     { name = "langchain-anthropic", specifier = "==0.3.22" },
     { name = "langchain-mcp-tools", specifier = "==0.2.13" },
     { name = "langchain-ollama", specifier = "==0.3.10" },
@@ -2319,11 +2319,11 @@ wheels = [
 
 [[package]]
 name = "jupyterlab-favorites"
-version = "3.4.0"
+version = "3.5.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/09/3e/c2133f06c27275c80f4ec1a05b4f35db6a809d4a3a505619f6af153b2cf9/jupyterlab_favorites-3.4.0.tar.gz", hash = "sha256:ae1d7e816f9f041d8eab13e76f7316bcef15d0bcee4e3031248325361f436672", size = 636479, upload-time = "2026-01-13T10:09:43.01Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/22/500da847af9884c24129c30328e939c55c1337d8c8132a78d457135a805c/jupyterlab_favorites-3.5.0.tar.gz", hash = "sha256:fbe1961b14fb87bbb8c24251e50b6c78a049b9e6bd7da33048e7d91a46abea82", size = 637930, upload-time = "2026-02-13T10:25:15.993Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/41/f7d37a880153096270ebcc3041987462b1a483b2916b33eafe0851074de6/jupyterlab_favorites-3.4.0-py3-none-any.whl", hash = "sha256:3e8892e20204189a28e676f4028dd6bd448299447a57c238ab0fa3ad198a1013", size = 27213, upload-time = "2026-01-13T10:09:41.126Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/b2/85b3135eb9dc5b6e914d503e05dabe4b4a54066692dd9a26931dc5e48f5f/jupyterlab_favorites-3.5.0-py3-none-any.whl", hash = "sha256:bbd52c74983250962a951971bfcabc434f810ada648b569f68b331deae070cbf", size = 27448, upload-time = "2026-02-13T10:25:14.258Z" },
 ]
 
 [[package]]

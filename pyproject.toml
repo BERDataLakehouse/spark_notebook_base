@@ -15,7 +15,7 @@ dependencies = [
     "hmsclient==0.1.1",
     "httpx==0.28.1",
     "itables==2.6.2",
-    "jupyterlab-favorites==3.4.0",
+    "jupyterlab-favorites==3.5.0",
     # CAUTION: s3contents is patched in spark_notebook/scripts/patch_s3contents.py.
     # Do not upgrade without verifying the patch compatibility.
     "s3contents==0.11.2",
