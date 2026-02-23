@@ -450,7 +450,7 @@ requires-dist = [
     { name = "jupyter-ai-cborg", git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" },
     { name = "jupyterlab-favorites", specifier = "==3.4.0" },
     { name = "langchain-anthropic", specifier = "==0.3.22" },
-    { name = "langchain-mcp-tools", specifier = "==0.2.13" },
+    { name = "langchain-mcp-tools", specifier = "==0.3.2" },
     { name = "langchain-ollama", specifier = "==0.3.10" },
     { name = "langchain-openai", specifier = "==0.3.35" },
     { name = "matplotlib", specifier = "==3.10.8" },
@@ -2531,7 +2531,7 @@ wheels = [
 
 [[package]]
 name = "langchain-mcp-tools"
-version = "0.2.13"
+version = "0.3.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jsonschema-pydantic" },
@@ -2539,9 +2539,9 @@ dependencies = [
     { name = "langchain-core" },
     { name = "mcp" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4a/06/fdc97529d30436a8fe474fd53fdff693c53bf93fd45b69cfb0c359e1eb8e/langchain_mcp_tools-0.2.13.tar.gz", hash = "sha256:776eca73abee602f54d62fdaaa5d2f640a2da93f3ecfefa4a421075a0ab8a80b", size = 27640, upload-time = "2025-08-17T17:52:28.734Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/46/7f/aa523d8952544489c70e4a4131a2e4a8b3cd1f9f7c06cc1230a235a3dc8d/langchain_mcp_tools-0.3.2.tar.gz", hash = "sha256:a0be3b28bea17bf13260b3da544da9d5554e230739130f1a45905c0df8ec68d5", size = 28202, upload-time = "2026-02-13T06:31:38.987Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e4/68/6aa7de9e8daa0f58af2a1fb740d5fabfcd5dc329183190803d74caef7751/langchain_mcp_tools-0.2.13-py3-none-any.whl", hash = "sha256:55d00650bbd308f60f88d315448b4446ab2a6917a049f01b72012f9966534824", size = 23541, upload-time = "2025-08-17T17:52:27.34Z" },
+    { url = "https://files.pythonhosted.org/packages/a8/6d/20e4d46511834f66198519d1582fe79b8e425844a64a5ac73b1009e568dd/langchain_mcp_tools-0.3.2-py3-none-any.whl", hash = "sha256:aff634d4785a5262b0f4de6c3662285e631edf6911c9a786088b133e4c55c423", size = 23856, upload-time = "2026-02-13T06:31:37.472Z" },
 ]
 
 [[package]]

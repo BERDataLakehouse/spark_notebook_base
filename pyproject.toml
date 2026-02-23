@@ -35,7 +35,7 @@ dependencies = [
     "langchain-openai==0.3.35", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-anthropic==0.3.22", # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-ollama==0.3.10", # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-mcp-tools==0.2.13", # Automatic MCP tool discovery for FastApiMCP servers
+    "langchain-mcp-tools==0.3.2", # Automatic MCP tool discovery for FastApiMCP servers
     "websockets==16.0", # Required by langchain-mcp-tools
     "huggingface-hub==1.3.5",
     "berdl-access-request",
