@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -463,7 +463,7 @@ requires-dist = [
     { name = "py4j", specifier = "==0.10.9.9" },
     { name = "pydantic-settings", specifier = "==2.12.0" },
     { name = "pyspark", extras = ["connect"], specifier = "==4.1.1" },
-    { name = "s3contents", specifier = "==0.11.2" },
+    { name = "s3contents", specifier = "==0.12.0" },
     { name = "scanpy", specifier = "==1.12" },
     { name = "scikit-bio", specifier = "==0.7.2" },
     { name = "scikit-learn", specifier = "==1.8.0" },
@@ -4446,7 +4446,7 @@ wheels = [
 
 [[package]]
 name = "s3contents"
-version = "0.11.2"
+version = "0.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiobotocore" },
@@ -4454,9 +4454,9 @@ dependencies = [
     { name = "nbconvert" },
     { name = "s3fs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2c/f7/05887e02f85af8aaaa42671a95baeb1c0af0e5fb1784021b6d56b3bc628a/s3contents-0.11.2.tar.gz", hash = "sha256:9b9278a381cd4c9be3b698c2daeadc31ae5434ae9572b5609ab829eb37c68001", size = 26910, upload-time = "2023-12-14T15:12:42.963Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/eb/97/9529b6834c5f352ebe27ce528153a5d697eebfdf5bcb7d7170c8168a5930/s3contents-0.12.0.tar.gz", hash = "sha256:b576055da5466d80176196f61121eee56ed86e46b647a41865e4188bdd9928d1", size = 151292, upload-time = "2026-02-20T19:34:01.065Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a7/20/20fd3a933de45f4ec6285e0f93b915c73dfe8e9fe995fd0206b8289b8e09/s3contents-0.11.2-py3-none-any.whl", hash = "sha256:ea9e7163de5224cffac9183b1c6295c7118ddaf7a801c1b26a22da1b77e4caee", size = 32005, upload-time = "2023-12-14T15:12:41.103Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/8d/f12d4c91ed19d82c7e0ee942e3d0a3d8c89507c4005910057a5453e584df/s3contents-0.12.0-py3-none-any.whl", hash = "sha256:de20a7a26f2faa8730efdf667a3923daf924846ecffb5e5c90ab65b6ccc52348", size = 32038, upload-time = "2026-02-20T19:33:59.448Z" },
 ]
 
 [[package]]

@@ -18,7 +18,7 @@ dependencies = [
     "jupyterlab-favorites==3.4.0",
     # CAUTION: s3contents is patched in spark_notebook/scripts/patch_s3contents.py.
     # Do not upgrade without verifying the patch compatibility.
-    "s3contents==0.11.2",
+    "s3contents==0.12.0",
     "hybridcontents==0.4.0",
     "minio==7.2.20",
     "pandas==3.0.0",
