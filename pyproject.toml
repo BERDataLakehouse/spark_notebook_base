@@ -44,6 +44,7 @@ dependencies = [
     "tenant-data-browser",
     # Computational biology and data science
     "scikit-learn==1.8.0",
+    "scikit-bio==0.7.2",
     "scipy==1.17.0",
     "biopython==1.86",
     "matplotlib==3.10.8",
