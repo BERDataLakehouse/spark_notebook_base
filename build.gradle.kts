@@ -9,10 +9,10 @@ java {
 }
 
 val hadoopAwsVersion = "3.4.1"
-val deltaSparkVersion = "4.0.0"
+val deltaSparkVersion = "4.1.0"
 val scalaVersion = "2.13"
 val sedonaVersion = "1.8.0"
-val sparkVersion = "4.0.1"  // Must match runtime Spark version
+val sparkVersion = "4.1.1"  // Must match runtime Spark version
 
 repositories {
     mavenCentral()
