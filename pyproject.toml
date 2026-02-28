@@ -5,57 +5,67 @@ description = "BERDL Notebook Environment"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    # --- BERDL internal clients & extensions ---
     "cdm-spark-manager-client",
     "cdm-task-service-client",
     "datalake-mcp-server-client",
-    "jupyter-ai-cborg",
     "minio-manager-service-client",
-    "attrs==25.4.0",
-    "boto3==1.42.19",
-    "hmsclient==0.1.1",
-    "httpx==0.28.1",
-    "itables==2.6.2",
-    "jupyterlab-favorites==3.4.0",
-    # CAUTION: s3contents is patched in spark_notebook/scripts/patch_s3contents.py.
-    # Do not upgrade without verifying the patch compatibility.
-    "s3contents==0.11.2",
-    "hybridcontents==0.4.0",
-    "minio==7.2.20",
-    "pandas==3.0.0",
-    "pip==26.0",
-    "sidecar==0.8.0",
-    "papermill==2.6.0",
-    # Note these dependencies are already in the container, but we should explicitly call them out here
-    "delta-spark==4.0.1",
-    "py4j==0.10.9.9",
-    "pydantic-settings==2.12.0",
-    "pyspark[connect]==4.1.1",
-    # Jupyter AI dependencies
-    "jupyter-ai==2.31.7",
-    "langchain-openai==0.3.35", # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-anthropic==0.3.22", # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-ollama==0.3.10", # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-mcp-tools==0.2.13", # Automatic MCP tool discovery for FastApiMCP servers
-    "websockets==16.0", # Required by langchain-mcp-tools
-    "huggingface-hub==1.3.5",
     "berdl-access-request",
     "berdl-jupyterlab-coreui",
     "berdl-task-browser",
     "tenant-data-browser",
-    # Computational biology and data science
+
+    # --- Spark & Delta Lake ---
+    "pyspark[connect]==4.1.1",
+    "delta-spark==4.1.0",
+    "py4j==0.10.9.9",
+
+    # --- Jupyter AI ---
+    "jupyter-ai==2.31.7",
+    "jupyter-ai-cborg",
+    "langchain-openai==0.3.35",      # Keep at 0.3.x for jupyter-ai compatibility
+    "langchain-anthropic==0.3.22",    # Keep at 0.3.x for jupyter-ai compatibility
+    "langchain-ollama==0.3.10",       # Keep at 0.3.x for jupyter-ai compatibility
+    "langchain-mcp-tools==0.2.13",    # Automatic MCP tool discovery for FastApiMCP servers
+    "websockets==16.0",               # Required by langchain-mcp-tools
+    "huggingface-hub==1.5.0",
+
+    # --- JupyterLab extensions & notebook tools ---
+    "jupyterlab-favorites==3.5.0",
+    "sidecar==0.8.1",
+    "papermill==2.7.0",
+    "itables==2.7.0",
+
+    # --- Storage (S3 / MinIO) ---
+    "minio==7.2.20",
+    "boto3==1.42.55",  # Constrained by s3contents → aiobotocore botocore pin
+    # CAUTION: s3contents is patched in spark_notebook/scripts/patch_s3contents.py.
+    # Do not upgrade without verifying the patch compatibility.
+    "s3contents==0.12.0",
+    "hybridcontents==0.4.0",
+
+    # --- Computational biology & data science ---
+    "pandas==3.0.1",
     "scikit-learn==1.8.0",
     "scikit-bio==0.7.2",
-    "scipy==1.17.0",
+    "scipy==1.17.1",
     "biopython==1.86",
     "matplotlib==3.10.8",
     "seaborn==0.13.2",
-    "sqlalchemy==2.0.46",
     "scanpy==1.12",
+
+    # --- Core utilities ---
+    "attrs==25.4.0",
+    "httpx==0.28.1",
+    "pydantic-settings==2.13.1",
+    "sqlalchemy==2.0.47",
+    "hmsclient==0.1.1",
+    "pip==26.0.1",
 ]
 
 [tool.uv.sources]
 cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }
-datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.5" }
+datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.6" }
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
 minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.7" }
 berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git", rev = "v0.0.8" }
