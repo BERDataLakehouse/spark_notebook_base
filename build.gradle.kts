@@ -9,10 +9,13 @@ java {
 }
 
 val hadoopAwsVersion = "3.4.1"
-val deltaSparkVersion = "4.1.0"
+val deltaSparkVersion = "4.0.1"
 val scalaVersion = "2.13"
-val sedonaVersion = "1.8.0"
-val sparkVersion = "4.1.1"  // Must match runtime Spark version
+val sedonaVersion = "1.8.1"
+// Must match the Spark version in the base Docker image (quay.io/jupyter/pyspark-notebook)
+// DO NOT upgrade without also updating: Dockerfile base image SHA, pyproject.toml pyspark/delta-spark,
+// and verifying Sedona has a compatible artifact (as of Feb 2026, Sedona only supports up to Spark 4.0)
+val sparkVersion = "4.0.1"
 
 repositories {
     mavenCentral()
