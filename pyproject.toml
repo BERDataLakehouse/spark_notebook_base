@@ -22,7 +22,7 @@ dependencies = [
     "delta-spark==4.0.1",
     "py4j==0.10.9.9",
 
-    # --- Apache Iceberg (Phase 0 PoC — Polaris REST catalog) ---
+    # --- Apache Iceberg ---
     "pyiceberg[s3fs]==0.9.1",
 
     # --- Jupyter AI ---
