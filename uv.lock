@@ -441,7 +441,7 @@ requires-dist = [
     { name = "boto3", specifier = "==1.42.55" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.3" },
-    { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.6" },
+    { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.7" },
     { name = "delta-spark", specifier = "==4.0.1" },
     { name = "hmsclient", specifier = "==0.1.1" },
     { name = "httpx", specifier = "==0.28.1" },
@@ -974,7 +974,7 @@ wheels = [
 [[package]]
 name = "datalake-mcp-server-client"
 version = "0.0.1"
-source = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.6#525e40a5fa481bff8b556051612250bd6735a7a5" }
+source = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.7#9a2eb8f4160ed244f6f6ad671b312ef75fa0ee14" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
