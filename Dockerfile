@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         vim \
         redis-tools \
         wget \
+        s3fs \
+        fuse \
     && wget -q https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.${MC_VER} -O /usr/local/bin/mc \
     && chmod +x /usr/local/bin/mc \
     && apt-get purge -y --auto-remove wget \
