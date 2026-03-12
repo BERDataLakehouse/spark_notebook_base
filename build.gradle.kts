@@ -10,7 +10,6 @@ java {
 
 val hadoopAwsVersion = "3.4.1"
 val deltaSparkVersion = "4.0.1"
-val icebergVersion = "1.10.1"
 val scalaVersion = "2.13"
 val sedonaVersion = "1.8.1"
 // Must match the Spark version in the base Docker image (quay.io/jupyter/pyspark-notebook)
@@ -24,10 +23,7 @@ repositories {
 
 dependencies {
     runtimeOnly("org.apache.hadoop:hadoop-aws:$hadoopAwsVersion")
-    // Keep Delta Spark for hybrid operation alongside Iceberg
     runtimeOnly("io.delta:delta-spark_${scalaVersion}:$deltaSparkVersion")
-    // Apache Iceberg for Polaris REST catalog integration (Phase 0 PoC — runs alongside Delta)
-    runtimeOnly("org.apache.iceberg:iceberg-spark-runtime-4.0_${scalaVersion}:$icebergVersion")
     // Apache Sedona for geospatial data processing (shaded JAR includes all deps including GeoTools)
     runtimeOnly("org.apache.sedona:sedona-spark-shaded-4.0_${scalaVersion}:$sedonaVersion")
 
