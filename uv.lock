@@ -441,7 +441,7 @@ requires-dist = [
     { name = "boto3", specifier = "==1.42.55" },
     { name = "cdm-spark-manager-client", git = "https://github.com/kbase/cdm-kube-spark-manager-client.git?rev=0.0.1" },
     { name = "cdm-task-service-client", git = "https://github.com/kbase/cdm-task-service-client?rev=0.2.3" },
-    { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.7" },
+    { name = "datalake-mcp-server-client", git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.8" },
     { name = "delta-spark", specifier = "==4.0.1" },
     { name = "hmsclient", specifier = "==0.1.1" },
     { name = "httpx", specifier = "==0.28.1" },
@@ -457,7 +457,7 @@ requires-dist = [
     { name = "langchain-openai", specifier = "==0.3.35" },
     { name = "matplotlib", specifier = "==3.10.8" },
     { name = "minio", specifier = "==7.2.20" },
-    { name = "minio-manager-service-client", git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.10" },
+    { name = "minio-manager-service-client", git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.12" },
     { name = "pandas", specifier = "==3.0.1" },
     { name = "papermill", specifier = "==2.7.0" },
     { name = "pip", specifier = "==26.0.1" },
@@ -974,7 +974,7 @@ wheels = [
 [[package]]
 name = "datalake-mcp-server-client"
 version = "0.0.1"
-source = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.7#9a2eb8f4160ed244f6f6ad671b312ef75fa0ee14" }
+source = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git?rev=v0.0.8#044203a427f3170f094376d6b1d54f5e99bc4643" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
@@ -2866,7 +2866,7 @@ wheels = [
 [[package]]
 name = "minio-manager-service-client"
 version = "0.0.1"
-source = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.10#14fdfe1377358c4d5e154010a4fa8724f12bdb2d" }
+source = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.12#286065e2cae9751c6f78136fc4bcbccf150de8da" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
