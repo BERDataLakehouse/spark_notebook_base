@@ -59,6 +59,9 @@ dependencies = [
     "seaborn==0.13.2",
     "scanpy==1.12",
 
+    # --- Trino ---
+    "trino==0.337.0",
+
     # --- Core utilities ---
     "attrs==25.4.0",
     "httpx==0.28.1",
