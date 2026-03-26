@@ -458,7 +458,7 @@ requires-dist = [
     { name = "langchain-openai", specifier = "==0.3.35" },
     { name = "matplotlib", specifier = "==3.10.8" },
     { name = "minio", specifier = "==7.2.20" },
-    { name = "minio-manager-service-client", git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.15" },
+    { name = "minio-manager-service-client", git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.17" },
     { name = "pandas", specifier = "==3.0.1" },
     { name = "papermill", specifier = "==2.7.0" },
     { name = "pip", specifier = "==26.0.1" },
@@ -2900,7 +2900,7 @@ wheels = [
 [[package]]
 name = "minio-manager-service-client"
 version = "0.0.1"
-source = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.15#30cd6afabebfdcd286dabfa421dad45e1e7d3490" }
+source = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git?rev=v0.0.17#30c4e526507626f8afc08be33301f8a576496288" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
