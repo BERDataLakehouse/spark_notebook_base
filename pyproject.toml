@@ -63,7 +63,7 @@ dependencies = [
     "trino==0.337.0",
 
     # --- Core utilities ---
-    "attrs==25.4.0",
+    "attrs==26.1.0",
     "httpx==0.28.1",
     "pydantic-settings==2.13.1",
     "sqlalchemy==2.0.47",
