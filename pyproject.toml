@@ -50,7 +50,7 @@ dependencies = [
     "hybridcontents==0.4.0",
 
     # --- Computational biology & data science ---
-    "pandas==3.0.1",
+    "pandas==3.0.2",
     "scikit-learn==1.8.0",
     "scikit-bio==0.7.2",
     "scipy==1.17.1",
