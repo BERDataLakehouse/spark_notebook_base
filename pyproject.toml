@@ -26,7 +26,7 @@ dependencies = [
     "pyiceberg[s3fs]==0.9.1",
 
     # --- Jupyter AI ---
-    "jupyter-ai==2.31.7",
+    "jupyter-ai==3.0.0",
     "jupyter-ai-cborg",
     "langchain-openai==0.3.35",      # Keep at 0.3.x for jupyter-ai compatibility
     "langchain-anthropic==0.3.22",    # Keep at 0.3.x for jupyter-ai compatibility
