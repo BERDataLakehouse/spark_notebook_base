@@ -39,7 +39,7 @@ dependencies = [
     "jupyterlab-favorites==3.5.0",
     "sidecar==0.8.1",
     "papermill==2.7.0",
-    "itables==2.7.0",
+    "itables==2.7.3",
 
     # --- Storage (S3 / MinIO) ---
     "minio==7.2.20",
