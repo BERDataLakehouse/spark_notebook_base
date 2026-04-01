@@ -66,7 +66,7 @@ dependencies = [
     "attrs==25.4.0",
     "httpx==0.28.1",
     "pydantic-settings==2.13.1",
-    "sqlalchemy==2.0.47",
+    "sqlalchemy==2.0.48",
     "hmsclient==0.1.1",
     "pip==26.0.1",
 ]
