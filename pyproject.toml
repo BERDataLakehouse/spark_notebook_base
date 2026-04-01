@@ -23,7 +23,7 @@ dependencies = [
     "py4j==0.10.9.9",
 
     # --- Apache Iceberg ---
-    "pyiceberg[s3fs]==0.9.1",
+    "pyiceberg[s3fs]==0.11.1",
 
     # --- Jupyter AI ---
     "jupyter-ai==2.31.7",
