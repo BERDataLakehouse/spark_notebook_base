@@ -347,14 +347,14 @@ wheels = [
 
 [[package]]
 name = "berdl-access-request"
-version = "0.0.9.dev6"
-source = { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/pr-17/berdl_access_request-0.0.9.dev6-py3-none-any.whl" }
+version = "0.0.9"
+source = { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.0.9/berdl_access_request-0.0.9-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
     { name = "pyyaml" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/pr-17/berdl_access_request-0.0.9.dev6-py3-none-any.whl", hash = "sha256:eedf18b069c9a651a6e8d637153bece626e4da45497bd4ad1b66521a5146e849" },
+    { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.0.9/berdl_access_request-0.0.9-py3-none-any.whl", hash = "sha256:e2b049fe1080de0cb187f31942bd5d6be5153540bab52ced43ef9cd6f557570c" },
 ]
 
 [package.metadata]
@@ -444,7 +444,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
-    { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/pr-17/berdl_access_request-0.0.9.dev6-py3-none-any.whl" },
+    { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.0.9/berdl_access_request-0.0.9-py3-none-any.whl" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
     { name = "biopython", specifier = "==1.86" },
@@ -483,7 +483,7 @@ requires-dist = [
     { name = "seaborn", specifier = "==0.13.2" },
     { name = "sidecar", specifier = "==0.8.1" },
     { name = "sqlalchemy", specifier = "==2.0.47" },
-    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-28/tenant_data_browser-0.4.4.dev8-py3-none-any.whl" },
+    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.4/tenant_data_browser-0.4.4-py3-none-any.whl" },
     { name = "trino", specifier = "==0.337.0" },
     { name = "websockets", specifier = "==16.0" },
 ]
@@ -5145,13 +5145,13 @@ wheels = [
 
 [[package]]
 name = "tenant-data-browser"
-version = "0.4.4.dev8"
-source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-28/tenant_data_browser-0.4.4.dev8-py3-none-any.whl" }
+version = "0.4.4"
+source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.4/tenant_data_browser-0.4.4-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-28/tenant_data_browser-0.4.4.dev8-py3-none-any.whl", hash = "sha256:a09ea109775a4b2186989f51e0cfab0cd0e71bea80d4e386c223a24ed80a063e" },
+    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.4/tenant_data_browser-0.4.4-py3-none-any.whl", hash = "sha256:8aa5c0101c9b64f31324f76a44d84497043658ad26628bc23029d617f796339d" },
 ]
 
 [package.metadata]
