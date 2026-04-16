@@ -347,14 +347,14 @@ wheels = [
 
 [[package]]
 name = "berdl-access-request"
-version = "0.0.9"
-source = { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.0.9/berdl_access_request-0.0.9-py3-none-any.whl" }
+version = "0.1.0"
+source = { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
     { name = "pyyaml" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.0.9/berdl_access_request-0.0.9-py3-none-any.whl", hash = "sha256:e2b049fe1080de0cb187f31942bd5d6be5153540bab52ced43ef9cd6f557570c" },
+    { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl", hash = "sha256:eec88ce30d2336e8de52634144a374650fe1dc842f40939cedc1df59888202fe" },
 ]
 
 [package.metadata]
@@ -444,7 +444,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
-    { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.0.9/berdl_access_request-0.0.9-py3-none-any.whl" },
+    { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
     { name = "biopython", specifier = "==1.86" },
