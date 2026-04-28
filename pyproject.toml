@@ -39,7 +39,7 @@ dependencies = [
     "jupyterlab-favorites==3.5.0",
     "sidecar==0.8.1",
     "papermill==2.7.0",
-    "itables==2.7.0",
+    "itables==2.7.3",
 
     # --- Storage (S3 / MinIO) ---
     "minio==7.2.20",
@@ -50,20 +50,24 @@ dependencies = [
     "hybridcontents==0.4.0",
 
     # --- Computational biology & data science ---
-    "pandas==3.0.1",
+    "pandas==3.0.2",
     "scikit-learn==1.8.0",
     "scikit-bio==0.7.2",
     "scipy==1.17.1",
-    "biopython==1.86",
-    "matplotlib==3.10.8",
+    "biopython==1.87",
+    "matplotlib==3.10.9",
     "seaborn==0.13.2",
-    "scanpy==1.12",
+    "scanpy==1.12.1",
+
+    # --- Trino ---
+    "trino==0.337.0",
 
     # --- Core utilities ---
+    "cacheout==0.16.0",
     "attrs==25.4.0",
     "httpx==0.28.1",
-    "pydantic-settings==2.13.1",
-    "sqlalchemy==2.0.47",
+    "pydantic-settings==2.14.0",
+    "sqlalchemy==2.0.49",
     "hmsclient==0.1.1",
     "pip==26.0.1",
 ]
@@ -73,11 +77,11 @@ cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-mana
 datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.pr11" }
 jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
 minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.pr18" }
-berdl-access-request = { git = "https://github.com/BERDataLakehouse/berdl_access_request_extension.git", rev = "v0.0.8" }
+berdl-access-request = { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" }
 cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client", rev = "0.2.3" }
 berdl-task-browser = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" }
 berdl-jupyterlab-coreui = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" }
-tenant-data-browser = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.4.3/tenant_data_browser-0.4.3-py3-none-any.whl" }
+tenant-data-browser = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.5.0/tenant_data_browser-0.5.0-py3-none-any.whl" }
 
 [dependency-groups]
 dev = [
