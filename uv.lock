@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -395,6 +395,7 @@ dependencies = [
     { name = "berdl-access-request" },
     { name = "berdl-jupyterlab-coreui" },
     { name = "berdl-task-browser" },
+    { name = "beril-cli" },
     { name = "biopython" },
     { name = "boto3" },
     { name = "cacheout" },
@@ -448,6 +449,7 @@ requires-dist = [
     { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
+    { name = "beril-cli", git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?branch=main" },
     { name = "biopython", specifier = "==1.87" },
     { name = "boto3", specifier = "==1.42.55" },
     { name = "cacheout", specifier = "==0.16.0" },
@@ -510,6 +512,11 @@ requires-dist = [
     { name = "ipywidgets", specifier = ">=8.0.0" },
     { name = "requests", specifier = ">=2.25.0" },
 ]
+
+[[package]]
+name = "beril-cli"
+version = "0.1.0"
+source = { git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?branch=main#b36dc606c01eeb7a4b84cb7cbd0aa415fd4a1c1b" }
 
 [[package]]
 name = "biom-format"

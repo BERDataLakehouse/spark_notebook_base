@@ -14,6 +14,7 @@ dependencies = [
     "berdl-jupyterlab-coreui",
     "berdl-task-browser",
     "tenant-data-browser",
+    "beril-cli",
 
     # --- Spark & Delta Lake ---
     # Pinned to 4.0.1 — must match base Docker image Spark version and build.gradle.kts
@@ -82,6 +83,7 @@ cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-cli
 berdl-task-browser = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" }
 berdl-jupyterlab-coreui = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" }
 tenant-data-browser = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/0.5.0/tenant_data_browser-0.5.0-py3-none-any.whl" }
+beril-cli = { git = "https://github.com/kbaseincubator/BERIL-research-observatory.git", branch = "main" }
 
 [dependency-groups]
 dev = [
