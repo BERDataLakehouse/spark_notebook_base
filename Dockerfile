@@ -8,7 +8,7 @@ RUN gradle dependencies --configuration runtimeClasspath > /build/libs/dependenc
 
 # This is a spark-4.0.1 tag from November 2025
 # DO NOT upgrade Spark without verifying Sedona compatibility (as of Feb 2026, Sedona 1.8.1 only supports Spark <=4.0)
-FROM quay.io/jupyter/pyspark-notebook@sha256:6287c0ba787930d8dec08f8c5c81866b1e86be14adbfb3efe2b18d4e5db877ff
+FROM quay.io/jupyter/pyspark-notebook@sha256:a958efa4e2c8ff9131fa33d1243841900957a0fce9b8099261ebfcb421b338da
 
 USER root
 ENV MC_VER=2025-08-13T08-35-41Z
