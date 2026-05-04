@@ -520,7 +520,7 @@ requires-dist = [
     { name = "seaborn", specifier = "==0.13.2" },
     { name = "sidecar", specifier = "==0.8.1" },
     { name = "sqlalchemy", specifier = "==2.0.49" },
-    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-24/tenant_data_browser-0.5.1.dev5-py3-none-any.whl" },
+    { name = "tenant-data-browser", url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-24/tenant_data_browser-0.5.1.dev6-py3-none-any.whl" },
     { name = "trino", specifier = "==0.337.0" },
     { name = "websockets", specifier = "==16.0" },
 ]
@@ -5454,13 +5454,13 @@ wheels = [
 
 [[package]]
 name = "tenant-data-browser"
-version = "0.5.1.dev5"
-source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-24/tenant_data_browser-0.5.1.dev5-py3-none-any.whl" }
+version = "0.5.1.dev6"
+source = { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-24/tenant_data_browser-0.5.1.dev6-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-24/tenant_data_browser-0.5.1.dev5-py3-none-any.whl", hash = "sha256:e9fe9075980158cf385fff7801bf74dce530de83196d9b5b0f1f36d1a71d4650" },
+    { url = "https://github.com/BERDataLakehouse/tenant-data-browser/releases/download/pr-24/tenant_data_browser-0.5.1.dev6-py3-none-any.whl", hash = "sha256:5547d469129133fa526eb0190be423a6cef5c1c763bbda2d06e46d8862a5f681" },
 ]
 
 [package.metadata]
