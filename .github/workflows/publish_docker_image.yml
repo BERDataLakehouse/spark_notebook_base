@@ -32,6 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up QEMU
+        if: github.ref == 'refs/heads/main'
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
@@ -60,7 +61,9 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/amd64,linux/arm64
+          # Pull requests and non-main branches only build amd64 for faster CI.
+          # Main builds both amd64 and arm64 images for local Mac compatibility.
+          platforms: ${{ github.ref == 'refs/heads/main' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
