@@ -37,7 +37,7 @@ RUN eval "$(conda shell.bash hook)" && /opt/conda/bin/pip install uv==0.8.17
 # HOME=/root required because ENV HOME= is set above for the build context
 RUN eval "$(conda shell.bash hook)" && conda install -y -c conda-forge nodejs gh
 # Pin versions to avoid supply-chain risk from unpinned npm installs at build time
-RUN HOME=/root npm install -g @anthropic-ai/claude-code@2.1.50 @openai/codex@0.104.0
+RUN HOME=/root npm install -g @anthropic-ai/claude-code@2.1.132 @openai/codex@0.128.0
 # Allow users to install npm packages to their home dir (PVC-backed, survives restarts)
 # Uses profile.d so $HOME is evaluated at login time, not hardcoded to jovyan
 RUN printf 'export NPM_CONFIG_PREFIX="$HOME/.npm-global"\nexport PATH="$HOME/.npm-global/bin:$PATH"\n' \
