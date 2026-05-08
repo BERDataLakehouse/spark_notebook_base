@@ -386,13 +386,13 @@ requires-dist = [
 
 [[package]]
 name = "berdl-jupyterlab-coreui"
-version = "0.0.6"
-source = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" }
+version = "0.0.7"
+source = { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.7/berdl_jupyterlab_coreui-0.0.7-py3-none-any.whl" }
 dependencies = [
     { name = "jupyter-server" },
 ]
 wheels = [
-    { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl", hash = "sha256:580990e3945bfc29a781e9cc315c8e5ba7e5f52a9a2a0f7626ac3328cfd24150" },
+    { url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.7/berdl_jupyterlab_coreui-0.0.7-py3-none-any.whl", hash = "sha256:0c5aac477a1fca0a33716a5d8e857d799cffa1f6d8ee032678dfb18aa7f80bc5" },
 ]
 
 [package.metadata]
@@ -468,7 +468,7 @@ dev = [
 requires-dist = [
     { name = "attrs", specifier = "==25.4.0" },
     { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" },
-    { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.6/berdl_jupyterlab_coreui-0.0.6-py3-none-any.whl" },
+    { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.7/berdl_jupyterlab_coreui-0.0.7-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
     { name = "beril-cli", git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?branch=main" },
     { name = "biopython", specifier = "==1.87" },
