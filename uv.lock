@@ -470,7 +470,7 @@ requires-dist = [
     { name = "berdl-access-request", url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" },
     { name = "berdl-jupyterlab-coreui", url = "https://github.com/BERDataLakehouse/BERDL_JupyterLab_CoreUI/releases/download/0.0.7/berdl_jupyterlab_coreui-0.0.7-py3-none-any.whl" },
     { name = "berdl-task-browser", url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" },
-    { name = "beril-cli", git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?branch=main" },
+    { name = "beril-cli", git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?rev=2a9dc4f714509adeef675217f563fb705b101e63" },
     { name = "biopython", specifier = "==1.87" },
     { name = "boto3", specifier = "==1.42.55" },
     { name = "cacheout", specifier = "==0.16.0" },
@@ -537,7 +537,7 @@ requires-dist = [
 [[package]]
 name = "beril-cli"
 version = "0.1.0"
-source = { git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?branch=main#2a9dc4f714509adeef675217f563fb705b101e63" }
+source = { git = "https://github.com/kbaseincubator/BERIL-research-observatory.git?rev=2a9dc4f714509adeef675217f563fb705b101e63#2a9dc4f714509adeef675217f563fb705b101e63" }
 
 [[package]]
 name = "biom-format"
