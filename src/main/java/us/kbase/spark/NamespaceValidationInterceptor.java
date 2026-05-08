@@ -2,13 +2,16 @@
  * Namespace Validation Server Interceptor for Spark Connect
  *
  * This gRPC server interceptor validates CREATE DATABASE/SCHEMA/NAMESPACE SQL
- * commands against allowed namespace prefixes. Users can only create databases
- * whose names start with their allowed prefixes (user prefix or writable
- * tenant prefix).
+ * commands against allowed namespace prefixes or configured Polaris catalog
+ * aliases. Users can only create Delta/Hive databases whose names start with
+ * their allowed prefixes, or Iceberg namespaces inside catalog aliases assigned
+ * to the current user.
  *
  * Configuration (environment variables):
  * - BERDL_ALLOWED_NAMESPACE_PREFIXES: Comma-separated list of allowed prefixes
  *   (e.g., "u_tgu2__,kbase_,research_")
+ * - BERDL_ALLOWED_NAMESPACE_CATALOGS: Comma-separated list of allowed catalog
+ *   aliases for catalog-qualified Iceberg namespaces (e.g., "my,tgu2,kbase")
  *
  * Enable in spark-defaults.conf:
  *   spark.connect.grpc.interceptor.classes=...,us.kbase.spark.NamespaceValidationInterceptor
@@ -34,67 +37,86 @@ import java.util.regex.Pattern;
  * gRPC server interceptor that validates namespace creation against allowed prefixes.
  *
  * <p>Intercepts SQL commands sent via Spark Connect and blocks CREATE DATABASE/SCHEMA/NAMESPACE
- * statements where the database name does not match one of the configured allowed
- * namespace prefixes. This prevents users from creating databases outside their
- * governance-assigned namespaces.
+ * statements where the database name does not match one of the configured
+ * allowed namespace prefixes or catalog aliases. This prevents users from
+ * creating Delta/Hive databases outside their governance-assigned namespaces
+ * while still allowing Polaris Iceberg namespaces inside user-visible catalogs.
  *
  * <p>Allowed prefixes are loaded from the {@code BERDL_ALLOWED_NAMESPACE_PREFIXES}
- * environment variable at interceptor initialization. The format is a comma-separated
- * list (e.g., {@code "u_alice__,kbase_,research_"}).
+ * environment variable at interceptor initialization. Allowed catalog aliases are
+ * loaded from {@code BERDL_ALLOWED_NAMESPACE_CATALOGS}. Both formats are
+ * comma-separated lists.
  *
  * <p>The {@code default} database is always allowed.
  */
 public class NamespaceValidationInterceptor implements ServerInterceptor {
 
     private static final Logger LOGGER = Logger.getLogger(NamespaceValidationInterceptor.class.getName());
+    private static final String IDENTIFIER_PART = "(`[^`]+`|\"[^\"]+\"|[^\\s.;]+)";
 
     /**
-     * Regex to match CREATE DATABASE/SCHEMA/NAMESPACE statements and extract the database name.
+     * Regex to match CREATE DATABASE/SCHEMA/NAMESPACE statements and extract the database or namespace identifier.
      *
      * <p>Handles:
      * <ul>
      *   <li>{@code CREATE DATABASE mydb}</li>
      *   <li>{@code CREATE SCHEMA IF NOT EXISTS mydb}</li>
-     *   <li>{@code CREATE NAMESPACE mydb} (Spark 4.0 synonym)</li>
+     *   <li>{@code CREATE NAMESPACE my.demo} (Spark 4.0 / Iceberg)</li>
+     *   <li>{@code CREATE NAMESPACE `my`.`demo`} (part-quoted multipart identifier)</li>
      *   <li>{@code CREATE DATABASE `my_db`} (backtick-quoted)</li>
      *   <li>{@code CREATE DATABASE "my_db"} (double-quote-quoted)</li>
      *   <li>Case-insensitive matching</li>
      * </ul>
      *
-     * <p>Group 3 captures the database name (with optional backticks/quotes).
+     * <p>Group 3 captures the database or namespace identifier (with optional backticks/quotes).
      */
     private static final Pattern CREATE_DB_PATTERN = Pattern.compile(
-            "(?i)\\bCREATE\\s+(DATABASE|SCHEMA|NAMESPACE)\\s+(IF\\s+NOT\\s+EXISTS\\s+)?(`[^`]+`|\"[^\"]+\"|\\S+)");
+            "(?i)\\bCREATE\\s+(DATABASE|SCHEMA|NAMESPACE)\\s+(IF\\s+NOT\\s+EXISTS\\s+)?("
+                    + IDENTIFIER_PART + "(\\s*\\.\\s*" + IDENTIFIER_PART + ")*\\s*;?)");
 
     private final List<String> allowedPrefixes;
+    private final List<String> allowedCatalogs;
 
     /**
      * Creates a new namespace validation interceptor.
      *
      * <p>Reads allowed prefixes from the {@code BERDL_ALLOWED_NAMESPACE_PREFIXES}
      * environment variable. If the variable is not set or empty, the interceptor
-     * logs a warning and will reject all CREATE DATABASE statements (except for
-     * the {@code default} database).
+     * logs a warning and will reject all unqualified CREATE DATABASE statements
+     * except for the {@code default} database.
      */
     public NamespaceValidationInterceptor() {
-        String envPrefixes = System.getenv("BERDL_ALLOWED_NAMESPACE_PREFIXES");
-        if (envPrefixes == null || envPrefixes.trim().isEmpty()) {
-            LOGGER.warning("BERDL_ALLOWED_NAMESPACE_PREFIXES not set. " +
-                    "All CREATE DATABASE statements will be rejected except for 'default'.");
-            this.allowedPrefixes = Collections.emptyList();
-        } else {
-            List<String> prefixes = new ArrayList<>();
-            for (String prefix : envPrefixes.split(",")) {
-                String trimmed = prefix.trim();
-                if (!trimmed.isEmpty()) {
-                    prefixes.add(trimmed);
-                }
-            }
-            this.allowedPrefixes = Collections.unmodifiableList(prefixes);
+        this(
+                System.getenv("BERDL_ALLOWED_NAMESPACE_PREFIXES"),
+                System.getenv("BERDL_ALLOWED_NAMESPACE_CATALOGS"));
+    }
+
+    NamespaceValidationInterceptor(String envPrefixes, String envCatalogs) {
+        this.allowedPrefixes = parseCsvEnv(envPrefixes);
+        this.allowedCatalogs = parseCsvEnv(envCatalogs);
+
+        if (this.allowedPrefixes.isEmpty()) {
+            LOGGER.warning("BERDL_ALLOWED_NAMESPACE_PREFIXES not set. "
+                    + "All unqualified CREATE DATABASE statements will be rejected except for 'default'.");
         }
 
-        LOGGER.info("Namespace Validation Interceptor initialized with allowed prefixes: " +
-                this.allowedPrefixes);
+        LOGGER.info("Namespace Validation Interceptor initialized with allowed prefixes: "
+                + this.allowedPrefixes + " and allowed catalogs: " + this.allowedCatalogs);
+    }
+
+    private static List<String> parseCsvEnv(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<String> items = new ArrayList<>();
+        for (String item : value.split(",")) {
+            String trimmed = item.trim();
+            if (!trimmed.isEmpty()) {
+                items.add(trimmed.toLowerCase(Locale.ROOT));
+            }
+        }
+        return Collections.unmodifiableList(items);
     }
 
     @Override
@@ -249,8 +271,8 @@ public class NamespaceValidationInterceptor implements ServerInterceptor {
      * Validate a SQL statement for namespace creation rules.
      *
      * <p>If the SQL contains a CREATE DATABASE/SCHEMA/NAMESPACE statement, the
-     * database name is checked against the allowed namespace prefixes. The
-     * {@code default} database is always allowed.
+     * database name is checked against allowed namespace prefixes and catalog
+     * aliases. The {@code default} database is always allowed.
      *
      * @param sql the SQL statement to validate
      * @return an error message if validation fails, or null if the statement is allowed
@@ -262,37 +284,101 @@ public class NamespaceValidationInterceptor implements ServerInterceptor {
             return null;
         }
 
-        String dbName = matcher.group(3);
-
-        // Strip quoting (backticks or double quotes) if present
-        if ((dbName.startsWith("`") && dbName.endsWith("`")) ||
-                (dbName.startsWith("\"") && dbName.endsWith("\""))) {
-            dbName = dbName.substring(1, dbName.length() - 1);
-        }
-
-        // Strip trailing semicolons
-        if (dbName.endsWith(";")) {
-            dbName = dbName.substring(0, dbName.length() - 1);
-        }
-
-        // Hive stores database names in lowercase
-        dbName = dbName.toLowerCase(Locale.ROOT);
+        String dbName = normalizeIdentifier(matcher.group(3));
 
         // Always allow the 'default' database
         if ("default".equals(dbName)) {
             return null;
         }
 
-        // Check against allowed prefixes
-        for (String prefix : allowedPrefixes) {
-            if (dbName.startsWith(prefix.toLowerCase(Locale.ROOT))) {
+        if (hasAllowedPrefix(dbName)) {
+            return null;
+        }
+
+        String[] catalogParts = dbName.split("\\.", 2);
+        if (catalogParts.length == 2) {
+            String catalog = catalogParts[0];
+            String namespace = catalogParts[1];
+
+            // Explicit spark_catalog references are still Delta/Hive namespaces
+            // and must obey prefix-based governance.
+            if ("spark_catalog".equals(catalog)) {
+                if ("default".equals(namespace) || hasAllowedPrefix(namespace)) {
+                    return null;
+                }
+                return deniedMessage(dbName);
+            }
+
+            if (allowedCatalogs.contains(catalog)) {
                 return null;
             }
         }
 
+        return deniedMessage(dbName);
+    }
+
+    private boolean hasAllowedPrefix(String dbName) {
+        for (String prefix : allowedPrefixes) {
+            if (dbName.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String deniedMessage(String dbName) {
         return "Database name '" + dbName + "' is not allowed. " +
-                "Database names must start with one of the following prefixes: " +
-                allowedPrefixes + ". " +
+                "Unqualified Delta/Hive database names must start with one of the following prefixes: " +
+                allowedPrefixes + ". Catalog-qualified Iceberg namespaces must use one of the following catalogs: " +
+                allowedCatalogs + ". " +
                 "Use create_namespace_if_not_exists() to create databases with the correct prefix.";
+    }
+
+    private String normalizeIdentifier(String identifier) {
+        String value = identifier.trim();
+
+        while (value.endsWith(";")) {
+            value = value.substring(0, value.length() - 1).trim();
+        }
+
+        List<String> parts = splitIdentifierParts(value);
+        List<String> normalizedParts = new ArrayList<>();
+        for (String part : parts) {
+            String normalized = part.trim();
+            if ((normalized.startsWith("`") && normalized.endsWith("`")) ||
+                    (normalized.startsWith("\"") && normalized.endsWith("\""))) {
+                normalized = normalized.substring(1, normalized.length() - 1);
+            }
+            normalizedParts.add(normalized.toLowerCase(Locale.ROOT));
+        }
+
+        return String.join(".", normalizedParts);
+    }
+
+    private List<String> splitIdentifierParts(String identifier) {
+        List<String> parts = new ArrayList<>();
+        StringBuilder current = new StringBuilder();
+        Character quote = null;
+
+        for (int i = 0; i < identifier.length(); i++) {
+            char c = identifier.charAt(i);
+            if (quote != null) {
+                current.append(c);
+                if (c == quote) {
+                    quote = null;
+                }
+            } else if (c == '`' || c == '"') {
+                quote = c;
+                current.append(c);
+            } else if (c == '.') {
+                parts.add(current.toString());
+                current.setLength(0);
+            } else {
+                current.append(c);
+            }
+        }
+
+        parts.add(current.toString());
+        return parts;
     }
 }
