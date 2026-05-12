@@ -24,17 +24,19 @@ dependencies = [
     "py4j==0.10.9.9",
 
     # --- Apache Iceberg ---
-    "pyiceberg[s3fs]==0.9.1",
+    "pyiceberg[s3fs]==0.11.1",
 
     # --- Jupyter AI ---
-    "jupyter-ai==2.31.7",
-    "jupyter-ai-cborg",
-    "langchain-openai==0.3.35",      # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-anthropic==0.3.22",    # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-ollama==0.3.10",       # Keep at 0.3.x for jupyter-ai compatibility
-    "langchain-mcp-tools==0.2.13",    # Automatic MCP tool discovery for FastApiMCP servers
-    "websockets==16.0",               # Required by langchain-mcp-tools
-    "huggingface-hub==1.5.0",
+    "jupyter-ai==3.0.0",
+    "langchain==1.2.18",
+    "langchain-classic==1.0.7",
+    "langchain-community==0.4.1",
+    "langchain-openai==1.2.1",
+    "langchain-anthropic==1.4.3",
+    "langchain-ollama==1.1.0",
+    "langchain-mcp-tools==0.3.3",      # Automatic MCP tool discovery for FastApiMCP servers
+    "websockets==16.0",                # Required by langchain-mcp-tools
+    "huggingface-hub==1.14.0",
 
     # --- JupyterLab extensions & notebook tools ---
     "jupyterlab-favorites==3.5.0",
@@ -65,19 +67,18 @@ dependencies = [
 
     # --- Core utilities ---
     "cacheout==0.16.0",
-    "attrs==25.4.0",
+    "attrs==26.1.0",
     "httpx==0.28.1",
-    "pydantic-settings==2.14.0",
+    "pydantic-settings==2.14.1",
     "sqlalchemy==2.0.49",
     "hmsclient==0.1.1",
-    "pip==26.0.1",
+    "pip==26.1.1",
 ]
 
 [tool.uv.sources]
 cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }
 datalake-mcp-server-client = { git = "https://github.com/BERDataLakehouse/datalake-mcp-server-client.git", rev = "v0.0.10" }
-jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git" }
-minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.21" }
+minio-manager-service-client = { git = "https://github.com/BERDataLakehouse/minio_manager_service_client.git", rev = "v0.0.22" }
 berdl-access-request = { url = "https://github.com/BERDataLakehouse/berdl_access_request_extension/releases/download/v0.1.0/berdl_access_request-0.1.0-py3-none-any.whl" }
 cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client", rev = "0.2.3" }
 berdl-task-browser = { url = "https://github.com/BERDataLakehouse/berdl_task_browser/releases/download/0.2.1/berdl_task_browser-0.2.1-py3-none-any.whl" }
@@ -87,5 +88,5 @@ beril-cli = { git = "https://github.com/kbaseincubator/BERIL-research-observator
 
 [dependency-groups]
 dev = [
-    "wheel>=0.46.3",
+    "wheel>=0.47.0",
 ]
